@@ -23,402 +23,140 @@
       color: var(--charcoal);
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-    }
-
-    /* ── HEADER ── */
-    header {
-      text-align: center;
-      padding: 36px 20px 0;
-      background: var(--cream);
-    }
-
-    .couple-script {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      color: var(--charcoal);
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-    }
-
-    /* ── NAV ── */
-    nav {
-      background: var(--cream);
-      padding: 18px 20px 16px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--border);
-    }
-
-    nav a {
-      display: inline-block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--charcoal);
-      text-decoration: none;
-      margin: 0 14px;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    nav a:hover {
-      color: var(--sage-dark);
-      border-bottom-color: var(--sage);
-    }
-
-    /* ── HERO ── */
-    .hero {
-      width: 100%;
-      height: 75vh;
-      min-height: 420px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-      display: block;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.18) 100%);
-    }
-
-    /* ── NAMES SECTION ── */
-    .names-section {
-      text-align: center;
-      padding: 56px 20px 48px;
-      background: var(--cream);
-    }
-
-    .full-name {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      color: var(--charcoal);
-      line-height: 1.3;
-    }
-
-    .names-divider {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      margin: 14px auto;
-      max-width: 320px;
     }
 
-    .names-divider span {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--warm-grey);
+    .password-wrap {
+      text-align: center;
+      padding: 60px 40px;
+      max-width: 480px;
+      width: 100%;
     }
 
-    .names-divider::before,
-    .names-divider::after {
+    .script-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.8rem, 8vw, 4.2rem);
+      color: var(--charcoal);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 20px auto 28px;
+      max-width: 280px;
+    }
+
+    .divider::before, .divider::after {
       content: '';
       flex: 1;
       height: 1px;
       background: var(--border);
     }
 
-    /* ── DATE BANNER ── */
-    .date-banner {
-      background: var(--sage);
-      color: white;
-      text-align: center;
-      padding: 22px 20px;
-      font-size: 0.78rem;
+    .divider span {
+      font-size: 0.68rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
+      color: var(--warm-grey);
     }
 
-    .date-banner strong {
-      font-weight: 400;
+    .welcome-text {
+      font-size: 1rem;
+      font-style: italic;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 36px;
     }
 
-    /* ── COUNTDOWN ── */
-    .countdown-section {
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      background: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--charcoal);
       text-align: center;
-      padding: 56px 20px;
-      border-bottom: 1px solid var(--border);
+      letter-spacing: 0.15em;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 14px;
     }
 
-    .countdown-label {
-      font-size: 0.72rem;
+    input[type="password"]:focus {
+      border-color: var(--sage);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px 20px;
+      background: var(--sage);
+      color: white;
+      border: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.78rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--sage-dark);
-      margin-bottom: 28px;
+      cursor: pointer;
+      transition: background 0.2s;
     }
 
-    .countdown-grid {
-      display: flex;
-      justify-content: center;
-      gap: clamp(20px, 5vw, 56px);
+    button:hover {
+      background: var(--sage-dark);
     }
 
-    .countdown-unit {
-      text-align: center;
-    }
-
-    .countdown-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 6vw, 4rem);
-      font-weight: 300;
-      color: var(--charcoal);
-      line-height: 1;
-      display: block;
-    }
-
-    .countdown-word {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--warm-grey);
-      margin-top: 6px;
-      display: block;
-    }
-
-    .countdown-divider {
-      font-size: 2.5rem;
-      color: var(--sage-light);
-      font-weight: 300;
-      line-height: 1;
-      align-self: flex-start;
-      padding-top: 8px;
-    }
-
-    /* ── WELCOME ── */
-    .welcome-section {
-      max-width: 640px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 64px 32px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .welcome-section h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      color: var(--sage-dark);
-      margin-bottom: 20px;
-    }
-
-    .welcome-section p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: #555;
+    .error {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: #b56060;
       font-style: italic;
+      display: none;
     }
 
-    /* ── DETAILS CARDS ── */
-    .details-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 64px 32px;
-      gap: 40px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .detail-card h3 {
+    .date-line {
+      margin-top: 36px;
       font-size: 0.68rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--sage-dark);
-      margin-bottom: 12px;
-    }
-
-    .detail-card .detail-icon {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .detail-card p {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--charcoal);
-      font-style: italic;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--cream);
-    }
-
-    footer .footer-script {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
-      color: var(--sage-dark);
-    }
-
-    footer p {
-      margin-top: 10px;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--warm-grey);
-    }
-
-    /* ── RESPONSIVE NAV ── */
-    @media (max-width: 680px) {
-      nav a { margin: 4px 8px; font-size: 0.72rem; }
-      .details-section { grid-template-columns: 1fr; }
-    }
-
-    /* ── FADE IN ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="couple-script">Danielle &amp; Martin</div>
-  </header>
+  <div class="password-wrap">
+    <div class="script-title">Danielle &amp; Martin</div>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="wedding-party.html">Wedding Party</a>
-    <a href="schedule.html">Schedule</a>
-    <a href="travel.html">Travel</a>
-    <a href="photos.html">Photos</a>
-    <a href="registry.html">Registry</a>
-    <a href="faqs.html">FAQs</a>
-    <a href="things-to-do.html">Things To Do</a>
-    <a href="rsvp.html">RSVP</a>
-  </nav>
+    <div class="divider"><span>Welcome</span></div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <img src="hero.jpg" alt="Danielle and Martin at Uluru" />
-    <div class="hero-overlay"></div>
+    <p class="welcome-text">We're so excited to celebrate with you.<br/>Please enter the password to access our wedding website.</p>
+
+    <input type="password" id="pwd" placeholder="Enter password" onkeydown="if(event.key==='Enter') checkPassword()" />
+    <button onclick="checkPassword()">Enter</button>
+    <p class="error" id="error">Incorrect password — please try again.</p>
+
+    <p class="date-line">11 · 06 · 2027 &nbsp;·&nbsp; Gloster House</p>
   </div>
-
-  <!-- NAMES -->
-  <section class="names-section fade-in">
-    <div class="full-name">Danielle McCullagh</div>
-    <div class="names-divider"><span>and</span></div>
-    <div class="full-name">Martin Cahalin</div>
-  </section>
-
-  <!-- DATE BANNER -->
-  <div class="date-banner">
-    <strong>11 June 2027 &nbsp;·&nbsp; Gloster House</strong>
-  </div>
-
-  <!-- COUNTDOWN -->
-  <section class="countdown-section fade-in">
-    <p class="countdown-label">Counting down to the big day</p>
-    <div class="countdown-grid">
-      <div class="countdown-unit">
-        <span class="countdown-number" id="days">--</span>
-        <span class="countdown-word">Days</span>
-      </div>
-      <div class="countdown-divider">·</div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="hours">--</span>
-        <span class="countdown-word">Hours</span>
-      </div>
-      <div class="countdown-divider">·</div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="minutes">--</span>
-        <span class="countdown-word">Minutes</span>
-      </div>
-      <div class="countdown-divider">·</div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="seconds">--</span>
-        <span class="countdown-word">Seconds</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- WELCOME -->
-  <section class="welcome-section fade-in">
-    <h2>Welcome</h2>
-    <p>We are so excited to celebrate our special day with our favourite people. This site has everything you need to know — from the schedule to travel tips and RSVP. We can't wait to see you there.</p>
-  </section>
-
-  <!-- DETAIL CARDS -->
-  <section class="details-section">
-    <div class="detail-card fade-in">
-      <span class="detail-icon">📅</span>
-      <h3>Date</h3>
-      <p>Friday, 11 June 2027</p>
-    </div>
-    <div class="detail-card fade-in">
-      <span class="detail-icon">📍</span>
-      <h3>Venue</h3>
-      <p>Gloster House</p>
-    </div>
-    <div class="detail-card fade-in">
-      <span class="detail-icon">✉️</span>
-      <h3>RSVP</h3>
-      <p>Kindly reply by<br/>1 April 2027</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-script">Danielle &amp; Martin</div>
-    <p>11 · 06 · 2027</p>
-  </footer>
 
   <script>
-    // Countdown
-    function updateCountdown() {
-      const wedding = new Date('2027-06-11T14:00:00');
-      const now = new Date();
-      const diff = wedding - now;
-      if (diff <= 0) {
-        document.getElementById('days').textContent = '0';
-        document.getElementById('hours').textContent = '0';
-        document.getElementById('minutes').textContent = '0';
-        document.getElementById('seconds').textContent = '0';
-        return;
+    function checkPassword() {
+      const val = document.getElementById('pwd').value;
+      if (val === 'dani69') {
+        sessionStorage.setItem('weddingAuth', 'true');
+        window.location.href = 'home.html';
+      } else {
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('pwd').value = '';
+        document.getElementById('pwd').focus();
       }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('days').textContent = String(d).padStart(2,'0');
-      document.getElementById('hours').textContent = String(h).padStart(2,'0');
-      document.getElementById('minutes').textContent = String(m).padStart(2,'0');
-      document.getElementById('seconds').textContent = String(s).padStart(2,'0');
     }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // Fade in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
 
 </body>
