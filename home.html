@@ -6,396 +6,365 @@
   <title>Danielle & Martin</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
   <script>
-    if (sessionStorage.getItem('weddingAuth') !== 'true') {
-      window.location.href = 'index.html';
-    }
+    if (sessionStorage.getItem('weddingAuth') !== 'true') { window.location.href = 'index.html'; }
   </script>
   <style>
     :root {
-      --cream: #faf8f4;
-      --sage: #7d9b76;
-      --sage-light: #a8c4a2;
-      --sage-dark: #5a7a54;
-      --charcoal: #2c2c2c;
-      --warm-grey: #888;
-      --border: #d9d4c7;
+      --cream: #faf8f4; --sage: #7d9b76; --sage-light: #a8c4a2;
+      --sage-dark: #5a7a54; --charcoal: #2c2c2c; --warm-grey: #888; --border: #d9d4c7;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'Cormorant Garamond', serif; font-weight: 300; }
 
-    body {
-      background: var(--cream);
-      color: var(--charcoal);
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-    }
+    /* RSVP BAR */
+    .rsvp-bar { background: var(--sage-dark); color: white; text-align: center; padding: 10px 20px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .rsvp-bar span { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .rsvp-bar a { display: inline-block; background: white; color: var(--sage-dark); font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 6px 18px; border: 1px solid white; transition: background 0.2s, color 0.2s; }
+    .rsvp-bar a:hover { background: var(--sage-dark); color: white; }
 
-    header {
-      text-align: center;
-      padding: 36px 20px 0;
-      background: var(--cream);
-    }
+    /* HEADER */
+    header { text-align: center; padding: 28px 20px 0; background: var(--cream); }
+    .couple-script { font-family: 'Great Vibes', cursive; font-size: clamp(2.4rem, 6vw, 3.8rem); color: var(--charcoal); line-height: 1.1; }
 
-    .couple-script {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      color: var(--charcoal);
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-    }
+    /* NAV */
+    nav { background: var(--cream); padding: 16px 20px 14px; text-align: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
+    nav a { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal); text-decoration: none; margin: 0 12px; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: var(--sage-dark); border-bottom-color: var(--sage); }
+    section { scroll-margin-top: 62px; }
 
-    nav {
-      background: var(--cream);
-      padding: 18px 20px 16px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--border);
-    }
+    /* HERO */
+    .hero { width: 100%; height: 75vh; min-height: 420px; position: relative; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.04), rgba(0,0,0,0.18)); }
 
-    nav a {
-      display: inline-block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--charcoal);
-      text-decoration: none;
-      margin: 0 14px;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-    }
+    /* NAMES */
+    .names-section { text-align: center; padding: 56px 20px 48px; background: var(--cream); }
+    .full-name { font-family: 'Great Vibes', cursive; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--charcoal); line-height: 1.3; }
+    .names-divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 14px auto; max-width: 320px; }
+    .names-divider span { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-grey); }
+    .names-divider::before, .names-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-    nav a:hover {
-      color: var(--sage-dark);
-      border-bottom-color: var(--sage);
-    }
+    /* SECTION BANNER */
+    .section-banner { background: var(--sage); color: white; text-align: center; padding: 28px 20px 24px; }
+    .banner-meta { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.85; margin-bottom: 8px; }
+    .banner-title { font-family: 'Great Vibes', cursive; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.1; }
 
-    .hero {
-      width: 100%;
-      height: 75vh;
-      min-height: 420px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-      display: block;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.18) 100%);
-    }
-
-    .names-section {
-      text-align: center;
-      padding: 56px 20px 48px;
-      background: var(--cream);
-    }
-
-    .full-name {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      color: var(--charcoal);
-      line-height: 1.3;
-    }
-
-    .names-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin: 14px auto;
-      max-width: 320px;
-    }
-
-    .names-divider span {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--warm-grey);
-    }
-
-    .names-divider::before, .names-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .date-banner {
-      background: var(--sage);
-      color: white;
-      text-align: center;
-      padding: 22px 20px;
-      font-size: 0.78rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
-
-    .countdown-section {
-      text-align: center;
-      padding: 56px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .countdown-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--sage-dark);
-      margin-bottom: 28px;
-    }
-
-    .countdown-grid {
-      display: flex;
-      justify-content: center;
-      gap: clamp(20px, 5vw, 56px);
-    }
-
+    /* COUNTDOWN */
+    .countdown-section { text-align: center; padding: 56px 20px; border-bottom: 1px solid var(--border); }
+    .countdown-label { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage-dark); margin-bottom: 28px; }
+    .countdown-grid { display: flex; justify-content: center; gap: clamp(20px, 5vw, 56px); }
     .countdown-unit { text-align: center; }
+    .countdown-number { font-size: clamp(2.6rem, 6vw, 4rem); font-weight: 300; color: var(--charcoal); line-height: 1; display: block; }
+    .countdown-word { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-grey); margin-top: 6px; display: block; }
+    .countdown-sep { font-size: 2.5rem; color: var(--sage-light); font-weight: 300; line-height: 1; align-self: flex-start; padding-top: 8px; }
 
-    .countdown-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 6vw, 4rem);
-      font-weight: 300;
-      color: var(--charcoal);
-      line-height: 1;
-      display: block;
-    }
+    /* WELCOME */
+    .welcome-section { max-width: 640px; margin: 0 auto; text-align: center; padding: 64px 32px; border-bottom: 1px solid var(--border); }
+    .welcome-section h2 { font-family: 'Great Vibes', cursive; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--sage-dark); margin-bottom: 20px; }
+    .welcome-section p { font-size: 1.05rem; line-height: 1.85; color: #555; font-style: italic; }
 
-    .countdown-word {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--warm-grey);
-      margin-top: 6px;
-      display: block;
-    }
+    /* DETAIL CARDS */
+    .detail-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 860px; margin: 0 auto; padding: 56px 32px; gap: 40px; text-align: center; border-bottom: 1px solid var(--border); }
+    .detail-card h3 { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage-dark); margin-bottom: 10px; }
+    .detail-card .icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+    .detail-card p { font-size: 1rem; line-height: 1.7; font-style: italic; }
 
-    .countdown-divider {
-      font-size: 2.5rem;
-      color: var(--sage-light);
-      font-weight: 300;
-      line-height: 1;
-      align-self: flex-start;
-      padding-top: 8px;
-    }
+    /* SECTION CONTENT */
+    .section-content { max-width: 860px; margin: 0 auto; padding: 56px 32px; }
 
-    .welcome-section {
-      max-width: 640px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 64px 32px;
-      border-bottom: 1px solid var(--border);
-    }
+    /* TIMELINE */
+    .day-block { margin-bottom: 52px; }
+    .day-block:last-child { margin-bottom: 0; }
+    .day-heading { font-family: 'Great Vibes', cursive; font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--sage-dark); margin-bottom: 28px; text-align: center; }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+    .tl-item { position: relative; padding: 0 0 28px 24px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot { position: absolute; left: -22px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--sage); border: 2px solid var(--cream); box-shadow: 0 0 0 1px var(--sage); }
+    .tl-time { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage-dark); margin-bottom: 3px; }
+    .tl-title { font-size: 1.1rem; font-weight: 400; color: var(--charcoal); margin-bottom: 2px; }
+    .tl-desc { font-size: 0.92rem; color: var(--warm-grey); font-style: italic; }
 
-    .welcome-section h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      color: var(--sage-dark);
-      margin-bottom: 20px;
-    }
+    /* PLACEHOLDER */
+    .placeholder-box { background: white; border: 1px solid var(--border); padding: 48px 32px; text-align: center; }
+    .placeholder-box .ph-icon { font-size: 2.4rem; margin-bottom: 16px; display: block; }
+    .placeholder-box h3 { font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--sage-dark); margin-bottom: 12px; }
+    .placeholder-box p { font-size: 1rem; color: var(--warm-grey); font-style: italic; line-height: 1.75; max-width: 480px; margin: 0 auto; }
 
-    .welcome-section p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: #555;
-      font-style: italic;
-    }
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q { width: 100%; background: none; border: none; padding: 18px 0; text-align: left; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 400; color: var(--charcoal); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-q:hover { color: var(--sage-dark); }
+    .faq-chevron { font-size: 0.85rem; color: var(--sage); transition: transform 0.25s; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; font-size: 0.98rem; color: #555; font-style: italic; line-height: 1.75; }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 18px; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
 
-    .details-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 64px 32px;
-      gap: 40px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
+    /* THINGS TO DO */
+    .things-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 8px; }
+    .thing-card { background: white; border: 1px solid var(--border); padding: 28px 22px; text-align: center; }
+    .thing-card .tc-icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+    .thing-card h4 { font-size: 1rem; font-weight: 400; color: var(--charcoal); margin-bottom: 6px; }
+    .thing-card p { font-size: 0.88rem; color: var(--warm-grey); font-style: italic; line-height: 1.6; }
 
-    .detail-card h3 {
-      font-size: 0.68rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--sage-dark);
-      margin-bottom: 12px;
-    }
+    /* RSVP CTA */
+    .rsvp-cta-box { background: white; border: 1px solid var(--border); padding: 56px 32px; text-align: center; max-width: 540px; margin: 0 auto; }
+    .rsvp-cta-box h3 { font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--sage-dark); margin-bottom: 12px; }
+    .rsvp-cta-box p { font-size: 1rem; font-style: italic; color: #555; margin-bottom: 28px; line-height: 1.7; }
+    .rsvp-link-btn { display: inline-block; background: var(--sage); color: white; font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; padding: 14px 36px; transition: background 0.2s; }
+    .rsvp-link-btn:hover { background: var(--sage-dark); }
 
-    .detail-card .detail-icon {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      display: block;
-    }
+    /* FOOTER */
+    footer { text-align: center; padding: 40px 20px; background: var(--cream); border-top: 1px solid var(--border); }
+    footer .footer-script { font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--sage-dark); }
+    footer p { margin-top: 8px; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-grey); }
 
-    .detail-card p {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--charcoal);
-      font-style: italic;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--cream);
-    }
-
-    footer .footer-script {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
-      color: var(--sage-dark);
-    }
-
-    footer p {
-      margin-top: 10px;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--warm-grey);
-    }
-
+    /* RESPONSIVE */
     @media (max-width: 680px) {
-      nav a { margin: 4px 8px; font-size: 0.72rem; }
-      .details-section { grid-template-columns: 1fr; }
+      nav a { margin: 4px 7px; font-size: 0.72rem; }
+      .section-content { padding: 40px 20px; }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
+    /* FADE IN */
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
   </style>
 </head>
 <body>
 
+  <!-- RSVP TOP BAR -->
+  <div class="rsvp-bar">
+    <span>11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</span>
+    <a href="rsvp.html">RSVP Now →</a>
+  </div>
+
+  <!-- HEADER -->
   <header>
     <div class="couple-script">Danielle &amp; Martin</div>
   </header>
 
+  <!-- NAV -->
   <nav>
-    <a href="home.html">Home</a>
-    <a href="wedding-party.html">Wedding Party</a>
-    <a href="schedule.html">Schedule</a>
-    <a href="travel.html">Travel</a>
-    <a href="photos.html">Photos</a>
-    <a href="registry.html">Registry</a>
-    <a href="faqs.html">FAQs</a>
-    <a href="things-to-do.html">Things To Do</a>
+    <a href="#home">Home</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#travel">Travel</a>
+    <a href="#photos">Photos</a>
+    <a href="#faqs">FAQs</a>
+    <a href="#things-to-do">Things To Do</a>
     <a href="rsvp.html">RSVP</a>
   </nav>
 
-  <div class="hero">
-    <img src="hero.jpg" alt="Danielle and Martin at Uluru" />
-    <div class="hero-overlay"></div>
-  </div>
+  <!-- ── HOME ── -->
+  <section id="home">
+    <div class="hero">
+      <img src="hero.jpg" alt="Danielle and Martin at Uluru" />
+      <div class="hero-overlay"></div>
+    </div>
 
-  <section class="names-section fade-in">
-    <div class="full-name">Danielle McCullagh</div>
-    <div class="names-divider"><span>and</span></div>
-    <div class="full-name">Martin Cahalin</div>
+    <div class="names-section fade-in">
+      <div class="full-name">Danielle McCullagh</div>
+      <div class="names-divider"><span>and</span></div>
+      <div class="full-name">Martin Cahalin</div>
+    </div>
+
+    <div class="countdown-section fade-in">
+      <p class="countdown-label">Counting down to the big day</p>
+      <div class="countdown-grid">
+        <div class="countdown-unit"><span class="countdown-number" id="days">--</span><span class="countdown-word">Days</span></div>
+        <div class="countdown-sep">·</div>
+        <div class="countdown-unit"><span class="countdown-number" id="hours">--</span><span class="countdown-word">Hours</span></div>
+        <div class="countdown-sep">·</div>
+        <div class="countdown-unit"><span class="countdown-number" id="minutes">--</span><span class="countdown-word">Minutes</span></div>
+        <div class="countdown-sep">·</div>
+        <div class="countdown-unit"><span class="countdown-number" id="seconds">--</span><span class="countdown-word">Seconds</span></div>
+      </div>
+    </div>
+
+    <div class="welcome-section fade-in">
+      <h2>Welcome</h2>
+      <p>We are so excited to celebrate our special day with our favourite people. This site has everything you need to know — from the schedule to travel tips and how to RSVP. We can't wait to see you there.</p>
+    </div>
+
+    <div class="detail-cards">
+      <div class="detail-card fade-in"><span class="icon">📅</span><h3>Date</h3><p>Friday, 11 June 2027</p></div>
+      <div class="detail-card fade-in"><span class="icon">📍</span><h3>Venue</h3><p>Gloster House</p></div>
+      <div class="detail-card fade-in"><span class="icon">🎩</span><h3>Dress Code</h3><p>Black Tie</p></div>
+      <div class="detail-card fade-in"><span class="icon">✉️</span><h3>RSVP By</h3><p>1 April 2027</p></div>
+    </div>
   </section>
 
-  <div class="date-banner">
-    <strong>11 June 2027 &nbsp;·&nbsp; Gloster House</strong>
-  </div>
+  <!-- ── SCHEDULE ── -->
+  <section id="schedule">
+    <div class="section-banner">
+      <div class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</div>
+      <div class="banner-title">Schedule</div>
+    </div>
+    <div class="section-content fade-in">
 
-  <section class="countdown-section fade-in">
-    <p class="countdown-label">Counting down to the big day</p>
-    <div class="countdown-grid">
-      <div class="countdown-unit">
-        <span class="countdown-number" id="days">--</span>
-        <span class="countdown-word">Days</span>
+      <div class="day-block">
+        <div class="day-heading">Day One — Friday 11 June 2027</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">3:00pm – 3:30pm</div><div class="tl-title">Wedding Ceremony</div><div class="tl-desc">Gloster House</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">3:30pm – 5:30pm</div><div class="tl-title">Drinks Reception &amp; Speeches</div><div class="tl-desc">Celebrations begin — raise a glass with us</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">5:30pm – 8:30pm</div><div class="tl-title">Dinner</div><div class="tl-desc">Sit back, relax and enjoy a beautiful meal</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">9:00pm – Late</div><div class="tl-title">Band &amp; DJ</div><div class="tl-desc">Dancing until the early hours</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">3:30am</div><div class="tl-title">Final Bus to Birr</div><div class="tl-desc">Safe journey home for all guests</div></div>
+        </div>
       </div>
-      <div class="countdown-divider">·</div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="hours">--</span>
-        <span class="countdown-word">Hours</span>
+
+      <div class="day-block">
+        <div class="day-heading">Day Two — Saturday 12 June 2027</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">2:30pm</div><div class="tl-title">Drinks Reception</div><div class="tl-desc">Gloster House — hair of the dog encouraged</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">3:30pm</div><div class="tl-title">BBQ Kick-Off</div><div class="tl-desc">Gloster House — feast in the fresh air</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">4:30pm</div><div class="tl-title">Live Music</div><div class="tl-desc">The party continues</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">7:00pm</div><div class="tl-title">Buses to Birr</div><div class="tl-desc">Transport departing from Gloster House</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">7:30pm – Late</div><div class="tl-title">Ceol agus Craic</div><div class="tl-desc">[Birr Pub] — music, dancing and good times</div></div>
+        </div>
       </div>
-      <div class="countdown-divider">·</div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="minutes">--</span>
-        <span class="countdown-word">Minutes</span>
-      </div>
-      <div class="countdown-divider">·</div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="seconds">--</span>
-        <span class="countdown-word">Seconds</span>
+
+    </div>
+  </section>
+
+  <!-- ── TRAVEL ── -->
+  <section id="travel">
+    <div class="section-banner">
+      <div class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</div>
+      <div class="banner-title">Travel</div>
+    </div>
+    <div class="section-content fade-in">
+      <div class="placeholder-box">
+        <span class="ph-icon">✈️</span>
+        <h3>Getting There</h3>
+        <p>Full details on getting to Gloster House, recommended accommodation options nearby, and transport arrangements will be added here shortly. In the meantime, please don't hesitate to reach out to us directly with any questions.</p>
       </div>
     </div>
   </section>
 
-  <section class="welcome-section fade-in">
-    <h2>Welcome</h2>
-    <p>We are so excited to celebrate our special day with our favourite people. This site has everything you need to know — from the schedule to travel tips and RSVP. We can't wait to see you there.</p>
-  </section>
-
-  <section class="details-section">
-    <div class="detail-card fade-in">
-      <span class="detail-icon">📅</span>
-      <h3>Date</h3>
-      <p>Friday, 11 June 2027</p>
+  <!-- ── PHOTOS ── -->
+  <section id="photos">
+    <div class="section-banner">
+      <div class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</div>
+      <div class="banner-title">Photos</div>
     </div>
-    <div class="detail-card fade-in">
-      <span class="detail-icon">📍</span>
-      <h3>Venue</h3>
-      <p>Gloster House</p>
-    </div>
-    <div class="detail-card fade-in">
-      <span class="detail-icon">✉️</span>
-      <h3>RSVP</h3>
-      <p>Kindly reply by<br/>1 April 2027</p>
+    <div class="section-content fade-in">
+      <div class="placeholder-box">
+        <span class="ph-icon">📸</span>
+        <h3>Our Gallery</h3>
+        <p>Photos from our journey together — and from the big day itself — will be shared here. Watch this space!</p>
+      </div>
     </div>
   </section>
 
+  <!-- ── FAQs ── -->
+  <section id="faqs">
+    <div class="section-banner">
+      <div class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</div>
+      <div class="banner-title">FAQs</div>
+    </div>
+    <div class="section-content fade-in">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What time does the ceremony start? <span class="faq-chevron">▼</span></button>
+        <div class="faq-a">The ceremony begins at 3:00pm on Friday 11 June 2027 at Gloster House. We'd ask that guests are seated by 2:45pm.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the dress code? <span class="faq-chevron">▼</span></button>
+        <div class="faq-a">The dress code is Black Tie. Think floor-length gowns or cocktail dresses for ladies, and black tie or lounge suits for gentlemen. We want everyone looking fabulous!</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is there accommodation nearby? <span class="faq-chevron">▼</span></button>
+        <div class="faq-a">Yes! There are several great accommodation options in and around Birr and the surrounding area. We'll be adding our full recommendations to the Travel section shortly.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Are buses provided? <span class="faq-chevron">▼</span></button>
+        <div class="faq-a">Yes — there will be a bus running from Gloster House to Birr at 3:30am after the band and DJ. On Day 2, buses run from Gloster House to Birr at 7:00pm. Full details to follow.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if I have dietary requirements? <span class="faq-chevron">▼</span></button>
+        <div class="faq-a">Please include any dietary requirements when you RSVP and we'll make sure you're well looked after on the day.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I bring children? <span class="faq-chevron">▼</span></button>
+        <div class="faq-a">Details on our children's policy will be confirmed shortly. Please feel free to reach out to us in the meantime.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THINGS TO DO ── -->
+  <section id="things-to-do">
+    <div class="section-banner">
+      <div class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</div>
+      <div class="banner-title">Things To Do</div>
+    </div>
+    <div class="section-content fade-in">
+      <p style="text-align:center;font-style:italic;color:var(--warm-grey);margin-bottom:36px;font-size:1rem;">Making a weekend of it? Here are some of our favourite spots around Birr and County Offaly.</p>
+      <div class="things-grid">
+        <div class="thing-card"><span class="tc-icon">🏰</span><h4>Birr Castle Demesne</h4><p>Stunning historic gardens with one of Ireland's great telescopes — a perfect afternoon wander.</p></div>
+        <div class="thing-card"><span class="tc-icon">🌿</span><h4>Slieve Bloom Mountains</h4><p>Beautiful walking trails and spectacular scenery just a short drive from Birr.</p></div>
+        <div class="thing-card"><span class="tc-icon">🍺</span><h4>Birr Town</h4><p>A charming Georgian town with great pubs, restaurants and independent shops to explore.</p></div>
+        <div class="thing-card"><span class="tc-icon">⛳</span><h4>Birr Golf Club</h4><p>A beautiful parkland course — ideal for the golf lovers in the group the morning after!</p></div>
+        <div class="thing-card"><span class="tc-icon">⛪</span><h4>Clonmacnoise</h4><p>One of Ireland's most important monastic sites, set dramatically on the banks of the Shannon.</p></div>
+        <div class="thing-card"><span class="tc-icon">🛶</span><h4>River Shannon</h4><p>Boat hire and river walks along one of Ireland's most iconic waterways.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RSVP ── -->
+  <section id="rsvp">
+    <div class="section-banner">
+      <div class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</div>
+      <div class="banner-title">RSVP</div>
+    </div>
+    <div class="section-content fade-in">
+      <div class="rsvp-cta-box">
+        <h3>Kindly Reply By</h3>
+        <p>Please let us know if you'll be joining us by <strong>1 April 2027</strong>. We can't wait to celebrate with you!</p>
+        <a href="rsvp.html" class="rsvp-link-btn">RSVP Here →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
     <div class="footer-script">Danielle &amp; Martin</div>
-    <p>11 · 06 · 2027</p>
+    <p>11 · 06 · 2027 &nbsp;·&nbsp; Gloster House</p>
   </footer>
 
   <script>
+    // Countdown
     function updateCountdown() {
-      const wedding = new Date('2027-06-11T14:00:00');
-      const now = new Date();
-      const diff = wedding - now;
-      if (diff <= 0) {
-        document.getElementById('days').textContent = '0';
-        document.getElementById('hours').textContent = '0';
-        document.getElementById('minutes').textContent = '0';
-        document.getElementById('seconds').textContent = '0';
-        return;
-      }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('days').textContent = String(d).padStart(2,'0');
-      document.getElementById('hours').textContent = String(h).padStart(2,'0');
-      document.getElementById('minutes').textContent = String(m).padStart(2,'0');
-      document.getElementById('seconds').textContent = String(s).padStart(2,'0');
+      const wedding = new Date('2027-06-11T15:00:00');
+      const diff = wedding - new Date();
+      if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent='0'); return; }
+      document.getElementById('days').textContent    = String(Math.floor(diff/86400000)).padStart(2,'0');
+      document.getElementById('hours').textContent   = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
     }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    updateCountdown(); setInterval(updateCountdown, 1000);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    // Fade in
+    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+    // FAQ
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Active nav
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+    }, { passive: true });
   </script>
-
 </body>
 </html>
