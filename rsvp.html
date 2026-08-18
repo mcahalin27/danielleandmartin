@@ -1,196 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RSVP — Danielle & Martin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
-  <script>
-    if (sessionStorage.getItem('weddingAuth') !== 'true') { window.location.href = 'index.html'; }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --cream: #faf8f4; --sage: #7d9b76; --sage-light: #a8c4a2;
-      --sage-dark: #5a7a54; --charcoal: #2c2c2c; --warm-grey: #888; --border: #d9d4c7;
+      --cream: #faf8f4;
+      --sage: #7d9b76;
+      --sage-light: #a8c4a2;
+      --sage-dark: #5a7a54;
+      --charcoal: #2c2c2c;
+      --warm-grey: #888;
+      --border: #d9d4c7;
+      --error: #b56060;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--cream); color: var(--charcoal); font-family: 'Cormorant Garamond', serif; font-weight: 300; min-height: 100vh; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--cream); color:var(--charcoal); font-family:'Lato',sans-serif; font-weight:300; min-height:100vh; }
 
-    /* TOP BAR */
-    .top-bar { background: var(--sage-dark); color: white; text-align: center; padding: 10px 20px; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; }
+    header { text-align:center; padding:32px 20px 0; background:var(--cream); }
+    .couple-script { font-family:'Pinyon Script',cursive; font-size:clamp(2.4rem,6vw,3.6rem); color:var(--charcoal); }
 
-    /* HEADER */
-    header { text-align: center; padding: 32px 20px 0; }
-    .couple-script { font-family: 'Great Vibes', cursive; font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--charcoal); line-height: 1.1; }
-
-    /* BANNER */
-    .section-banner { background: var(--sage); color: white; text-align: center; padding: 28px 20px 24px; margin-top: 24px; }
-    .banner-meta { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.85; margin-bottom: 8px; }
-    .banner-title { font-family: 'Great Vibes', cursive; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; }
-
-    /* FORM WRAPPER */
-    .form-wrap { max-width: 560px; margin: 0 auto; padding: 56px 32px 64px; }
-
-    .form-intro { text-align: center; margin-bottom: 40px; }
-    .form-intro p { font-size: 1rem; font-style: italic; color: #555; line-height: 1.75; }
-
-    /* FIELD */
-    .field { margin-bottom: 28px; }
-    .field label { display: block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage-dark); margin-bottom: 8px; }
-    .field label .req { color: #b56060; margin-left: 2px; }
-    .field input, .field textarea, .field select {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1px solid var(--border);
-      background: white;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      color: var(--charcoal);
-      outline: none;
-      transition: border-color 0.2s;
-      appearance: none;
+    nav {
+      background:var(--cream); padding:14px 20px 12px;
+      text-align:center; border-bottom:1px solid var(--border);
     }
-    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--sage); }
-    .field textarea { resize: vertical; min-height: 100px; }
-    .field .hint { font-size: 0.8rem; color: var(--warm-grey); font-style: italic; margin-top: 5px; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    nav a {
+      font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--charcoal); text-decoration:none;
+      padding-bottom:2px; border-bottom:1px solid transparent;
+      transition:color 0.2s, border-color 0.2s;
+    }
+    nav a:hover { color:var(--sage-dark); border-bottom-color:var(--sage); }
 
-    /* ATTENDANCE SELECT */
-    .select-wrapper { position: relative; }
-    .select-wrapper::after { content: '▼'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 0.7rem; color: var(--sage); pointer-events: none; }
+    .section-banner { background:var(--sage); color:white; text-align:center; padding:22px 20px 16px; }
+    .banner-meta { font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; opacity:0.85; display:block; margin-bottom:5px; }
+    .banner-title { font-family:'Pinyon Script',cursive; font-size:clamp(2rem,4vw,2.8rem); color:white; display:block; line-height:1.1; }
 
-    /* SUBMIT */
-    .submit-btn { width: 100%; padding: 16px; background: var(--sage); color: white; border: none; font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
-    .submit-btn:hover { background: var(--sage-dark); }
+    /* WATERMARK */
+    .form-watermark-wrap { position:relative; }
+    .form-bg-watermark { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .form-wrap { position:relative; z-index:1; max-width:580px; margin:0 auto; padding:52px 32px 64px; }
 
-    /* ERROR */
-    .field-error { font-size: 0.78rem; color: #b56060; font-style: italic; margin-top: 5px; display: none; }
-    .field.invalid input, .field.invalid textarea, .field.invalid select { border-color: #b56060; }
-    .field.invalid .field-error { display: block; }
+    .form-intro { text-align:center; margin-bottom:40px; }
+    .form-intro h2 { font-family:'Pinyon Script',cursive; font-size:2rem; color:var(--sage-dark); margin-bottom:10px; }
+    .form-intro p { font-size:0.92rem; color:#777; line-height:1.75; }
+
+    .form-group { margin-bottom:26px; }
+    label { display:block; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:8px; }
+    label .req { color:var(--error); margin-left:3px; }
+    label .opt { color:var(--warm-grey); font-size:0.62rem; letter-spacing:0; text-transform:none; }
+
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+      width:100%; padding:13px 16px;
+      border:1px solid var(--border); background:white;
+      font-family:'Lato',sans-serif; font-size:0.95rem;
+      color:var(--charcoal); outline:none;
+      transition:border-color 0.2s; -webkit-appearance:none;
+    }
+    input:focus, textarea:focus, select:focus { border-color:var(--sage); }
+    input.err, textarea.err { border-color:var(--error); }
+    textarea { resize:vertical; min-height:90px; line-height:1.6; }
+    select { cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23888'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+
+    .err-msg { font-size:0.75rem; color:var(--error); margin-top:5px; display:none; }
+
+    .form-rule { height:1px; background:var(--border); margin:32px 0; }
+
+    .form-section-label { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:20px; display:block; }
+
+    .fun-note { background:#eef4ec; border-left:3px solid var(--sage); padding:12px 16px; margin-bottom:26px; font-size:0.85rem; color:#555; line-height:1.6; }
+
+    .submit-btn {
+      width:100%; padding:16px 20px; background:var(--sage); color:white; border:none;
+      font-family:'Lato',sans-serif; font-size:0.75rem; letter-spacing:0.25em;
+      text-transform:uppercase; cursor:pointer; transition:background 0.2s; margin-top:6px;
+    }
+    .submit-btn:hover { background:var(--sage-dark); }
+    .submit-btn:disabled { opacity:0.6; cursor:not-allowed; }
+
+    .back-link { display:block; text-align:center; margin-top:20px; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--warm-grey); text-decoration:none; transition:color 0.2s; }
+    .back-link:hover { color:var(--sage-dark); }
 
     /* SUCCESS */
-    .success-wrap { display: none; text-align: center; padding: 64px 32px; max-width: 560px; margin: 0 auto; }
-    .success-wrap .success-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
-    .success-wrap h2 { font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: var(--sage-dark); margin-bottom: 16px; }
-    .success-wrap p { font-size: 1rem; font-style: italic; color: #555; line-height: 1.75; margin-bottom: 32px; }
-    .back-link { display: inline-block; background: var(--sage); color: white; font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; padding: 14px 36px; transition: background 0.2s; }
-    .back-link:hover { background: var(--sage-dark); }
+    #success-message { display:none; text-align:center; padding:60px 32px; max-width:580px; margin:0 auto; }
+    .success-icon { font-size:3rem; display:block; margin-bottom:20px; }
+    #success-message h2 { font-family:'Pinyon Script',cursive; font-size:2.8rem; color:var(--sage-dark); margin-bottom:16px; }
+    #success-message p { font-size:0.97rem; color:#666; line-height:1.8; margin-bottom:36px; }
+    #success-message a { display:inline-block; padding:14px 40px; background:var(--sage); color:white; text-decoration:none; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; transition:background 0.2s; }
+    #success-message a:hover { background:var(--sage-dark); }
 
-    /* FOOTER */
-    footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--border); }
-    footer .footer-script { font-family: 'Great Vibes', cursive; font-size: 1.6rem; color: var(--sage-dark); }
-    footer p { margin-top: 6px; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-grey); }
-    footer a { color: var(--sage-dark); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    /* ERROR BANNER */
+    #form-error { display:none; background:#fdf2f2; border:1px solid #e8c4c4; padding:12px 16px; margin-bottom:20px; font-size:0.85rem; color:var(--error); text-align:center; }
 
-    @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } .form-wrap { padding: 40px 20px 56px; } }
+    footer { text-align:center; padding:36px 20px; border-top:1px solid var(--border); }
+    .footer-script { font-family:'Pinyon Script',cursive; font-size:1.8rem; color:var(--sage-dark); }
+    footer p { margin-top:8px; font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--warm-grey); }
+
+    @media (max-width:500px) { .form-wrap { padding:36px 18px 52px; } }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</div>
+<header>
+  <div class="couple-script">Danielle &amp; Martin</div>
+</header>
+<nav>
+  <a href="home.html">&larr; Back to Home</a>
+</nav>
 
-  <header>
-    <div class="couple-script">Danielle &amp; Martin</div>
-  </header>
+<div class="section-banner">
+  <span class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</span>
+  <span class="banner-title">RSVP</span>
+</div>
 
-  <div class="section-banner">
-    <div class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</div>
-    <div class="banner-title">RSVP</div>
+<!-- FORM WITH WATERMARK -->
+<div class="form-watermark-wrap">
+
+  <!-- Flowers watermark -->
+  <div class="form-bg-watermark" aria-hidden="true">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="pat-rsvp" width="130" height="130" patternUnits="userSpaceOnUse">
+          <g transform="translate(65,65)">
+            <g opacity="0.08" fill="#7d9b76">
+              <ellipse rx="7" ry="22" cy="-18"/>
+              <ellipse rx="7" ry="22" cy="-18" transform="rotate(72)"/>
+              <ellipse rx="7" ry="22" cy="-18" transform="rotate(144)"/>
+              <ellipse rx="7" ry="22" cy="-18" transform="rotate(216)"/>
+              <ellipse rx="7" ry="22" cy="-18" transform="rotate(288)"/>
+              <circle r="10" fill="#a8c4a2" opacity="0.55"/>
+            </g>
+            <line x1="-6" y1="10" x2="-20" y2="26" stroke="#7d9b76" stroke-width="1.5" opacity="0.06"/>
+            <line x1="6" y1="10" x2="20" y2="26" stroke="#7d9b76" stroke-width="1.5" opacity="0.06"/>
+          </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#pat-rsvp)"/>
+    </svg>
   </div>
 
   <!-- FORM -->
-  <div id="form-container">
-    <div class="form-wrap">
-      <div class="form-intro">
-        <p>We'd love to know if you can join us. Please fill in your details below and let us know by <strong>1 April 2027</strong>.</p>
-      </div>
-
-      <div class="field-row">
-        <div class="field" id="field-name1">
-          <label>Name 1 <span class="req">*</span></label>
-          <input type="text" id="name1" placeholder="First & Last Name" />
-          <div class="field-error">Please enter your name.</div>
-        </div>
-        <div class="field" id="field-name2">
-          <label>Name 2</label>
-          <input type="text" id="name2" placeholder="Guest / Partner Name" />
-          <div class="hint">If bringing a plus one</div>
-        </div>
-      </div>
-
-      <div class="field" id="field-email">
-        <label>Email Address <span class="req">*</span></label>
-        <input type="email" id="email" placeholder="your@email.com" />
-        <div class="field-error">Please enter a valid email address.</div>
-      </div>
-
-      <div class="field" id="field-phone">
-        <label>Phone Number <span class="req">*</span></label>
-        <input type="tel" id="phone" placeholder="+353 87 000 0000" />
-        <div class="field-error">Please enter your phone number.</div>
-      </div>
-
-      <div class="field" id="field-attendance">
-        <label>Will you be attending? <span class="req">*</span></label>
-        <div class="select-wrapper">
-          <select id="attendance">
-            <option value="">— Please select —</option>
-            <option value="yes-both">Joyfully accepts (both days)</option>
-            <option value="yes-day1">Day 1 only (Friday)</option>
-            <option value="yes-day2">Day 2 only (Saturday)</option>
-            <option value="no">Regretfully declines</option>
-          </select>
-        </div>
-        <div class="field-error">Please let us know if you can attend.</div>
-      </div>
-
-      <div class="field">
-        <label>Dietary Requirements</label>
-        <textarea id="dietary" placeholder="Please let us know of any allergies or dietary needs (vegetarian, vegan, gluten-free, etc.)"></textarea>
-        <div class="hint">Leave blank if none</div>
-      </div>
-
-      <button class="submit-btn" onclick="submitRsvp()">Send RSVP →</button>
+  <div id="form-container" class="form-wrap">
+    <div class="form-intro">
+      <h2>Kindly Reply</h2>
+      <p>Fields marked <span style="color:var(--error)">*</span> are required.</p>
     </div>
+
+    <div id="form-error">Something went wrong — please try again or email us directly.</div>
+
+    <!-- GUEST NAMES -->
+    <span class="form-section-label">Your Details</span>
+
+    <div class="form-group">
+      <label for="name1">Guest 1 <span class="req">*</span></label>
+      <input type="text" id="name1" name="Guest 1" placeholder="Full name"/>
+      <p class="err-msg" id="name1-err">Please enter your name.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="name2">Guest 2 <span class="opt">(if applicable)</span></label>
+      <input type="text" id="name2" name="Guest 2" placeholder="Full name"/>
+    </div>
+
+    <div class="form-rule"></div>
+
+    <div class="form-group">
+      <label for="email">Email Address <span class="req">*</span></label>
+      <input type="email" id="email" name="Email" placeholder="your@email.com"/>
+      <p class="err-msg" id="email-err">Please enter a valid email address.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number <span class="req">*</span></label>
+      <input type="tel" id="phone" name="Phone" placeholder="+353 87 000 0000"/>
+      <p class="err-msg" id="phone-err">Please enter your phone number.</p>
+    </div>
+
+    <div class="form-rule"></div>
+
+    <!-- DIETARY -->
+    <div class="form-group">
+      <label for="dietaries">Dietary Requirements / Allergies <span class="opt">(optional)</span></label>
+      <textarea id="dietaries" name="Dietary Requirements" placeholder="Please list any dietary requirements or allergies for you or your guest. Leave blank if none."></textarea>
+    </div>
+
+    <div class="form-rule"></div>
+
+    <!-- FUN QUESTIONS -->
+    <span class="form-section-label">The Important Stuff</span>
+    <div class="fun-note">Now for the questions that really matter...</div>
+
+    <div class="form-group">
+      <label for="shot">Shot of Choice <span class="opt">(optional)</span></label>
+      <input type="text" id="shot" name="Shot of Choice" placeholder="e.g. Tequila, Jameson, Sambuca, All of the above..."/>
+    </div>
+
+    <div class="form-group">
+      <label for="banger">Dance Floor Banger Request <span class="opt">(optional)</span></label>
+      <input type="text" id="banger" name="Dance Floor Banger" placeholder="What song will get you on the floor?"/>
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitRSVP()">Send RSVP</button>
+    <a href="home.html" class="back-link">&larr; Back to Home</a>
+
   </div>
 
   <!-- SUCCESS -->
-  <div class="success-wrap" id="success-wrap">
-    <span class="success-icon">💌</span>
+  <div id="success-message">
+    <span class="success-icon">💚</span>
     <h2>Thank You!</h2>
-    <p>We've received your RSVP and we're so excited to celebrate with you. See you on 11 June 2027 at Gloster House!</p>
-    <a href="home.html" class="back-link">← Back to the Website</a>
+    <p>We've received your RSVP and we're so excited you're joining us.<br/>See you on 11 June 2027!</p>
+    <a href="home.html">Back to Home</a>
   </div>
 
-  <footer>
-    <div class="footer-script">Danielle &amp; Martin</div>
-    <p>11 · 06 · 2027 &nbsp;·&nbsp; Gloster House &nbsp;&nbsp;|&nbsp;&nbsp; <a href="home.html">← Back to website</a></p>
-  </footer>
+</div><!-- end form-watermark-wrap -->
 
-  <script>
-    function validate(id, checkFn) {
-      const field = document.getElementById('field-' + id);
-      const el = document.getElementById(id);
-      const valid = checkFn(el ? el.value.trim() : '');
-      if (field) field.classList.toggle('invalid', !valid);
-      return valid;
+<footer>
+  <div class="footer-script">Danielle &amp; Martin</div>
+  <p>11 · 06 · 2027</p>
+</footer>
+
+<script>
+  /*
+  ─────────────────────────────────────────────────────────────
+  FORMSPREE SETUP (to receive RSVPs by email + CSV download):
+  1. Go to https://formspree.io and create a free account
+  2. Click "New Form", name it "Wedding RSVP"
+  3. Copy your form ID (looks like: xabcdefg)
+  4. Replace YOUR_FORM_ID below with your actual ID
+  5. From your Formspree dashboard you can download all
+     submissions as CSV to open in Excel at any time
+  ─────────────────────────────────────────────────────────────
+  */
+  const FORMSPREE_ID = 'YOUR_FORM_ID';
+
+  function validate() {
+    let ok = true;
+
+    const name1 = document.getElementById('name1');
+    const name1Err = document.getElementById('name1-err');
+    if (!name1.value.trim()) {
+      name1.classList.add('err'); name1Err.style.display='block'; ok=false;
+    } else { name1.classList.remove('err'); name1Err.style.display='none'; }
+
+    const email = document.getElementById('email');
+    const emailErr = document.getElementById('email-err');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+      email.classList.add('err'); emailErr.style.display='block'; ok=false;
+    } else { email.classList.remove('err'); emailErr.style.display='none'; }
+
+    const phone = document.getElementById('phone');
+    const phoneErr = document.getElementById('phone-err');
+    if (!phone.value.trim()) {
+      phone.classList.add('err'); phoneErr.style.display='block'; ok=false;
+    } else { phone.classList.remove('err'); phoneErr.style.display='none'; }
+
+    return ok;
+  }
+
+  function showSuccess() {
+    document.getElementById('form-container').style.display='none';
+    document.getElementById('success-message').style.display='block';
+    window.scrollTo({ top: 0, behavior:'smooth' });
+  }
+
+  async function submitRSVP() {
+    if (!validate()) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    document.getElementById('form-error').style.display = 'none';
+
+    const data = {
+      'Guest 1':              document.getElementById('name1').value.trim(),
+      'Guest 2':              document.getElementById('name2').value.trim(),
+      'Email':                document.getElementById('email').value.trim(),
+      'Phone':                document.getElementById('phone').value.trim(),
+      'Dietary Requirements': document.getElementById('dietaries').value.trim(),
+      'Shot of Choice':       document.getElementById('shot').value.trim(),
+      'Dance Floor Banger':   document.getElementById('banger').value.trim(),
+    };
+
+    // If Formspree not yet configured, just show success (test mode)
+    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+      setTimeout(showSuccess, 600);
+      return;
     }
 
-    function submitRsvp() {
-      const v1 = validate('name1', v => v.length > 0);
-      const v2 = validate('email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
-      const v3 = validate('phone', v => v.length > 6);
-      const v4 = validate('attendance', v => v.length > 0);
-
-      if (!v1 || !v2 || !v3 || !v4) return;
-
-      // Show success state
-      document.getElementById('form-container').style.display = 'none';
-      document.getElementById('success-wrap').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        showSuccess();
+      } else {
+        throw new Error('Server error');
+      }
+    } catch(e) {
+      btn.disabled = false;
+      btn.textContent = 'Send RSVP';
+      document.getElementById('form-error').style.display = 'block';
     }
-  </script>
-
+  }
+</script>
 </body>
 </html>
