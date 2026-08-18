@@ -266,13 +266,16 @@
 <script>
   /*
   ─────────────────────────────────────────────────────────────
-  TO COLLECT RSVPs (and export to Excel):
-  RSVPs are sent to Formspree form xqpzgaoa.
-  View submissions and export to CSV/Excel at:
-  https://formspree.io/forms/xqpzgaoa/submissions
+  RSVPs are saved to a Google Sheet via Apps Script.
+  To view or export them, open the "Wedding RSVPs" Sheet in
+  Google Drive:  File -> Download -> Microsoft Excel (.xlsx)
+
+  If the Sheet ever stops receiving entries, re-deploy the
+  script (Apps Script -> Deploy -> Manage deployments) and
+  paste the new /exec URL below.
   ─────────────────────────────────────────────────────────────
   */
-  const FORMSPREE_ID = 'xqpzgaoa';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyNaS8HnLW34ztooJKLQY0w0sTbtcJgNYMIp1l5b35YmTZ34DkcDx0uL8LdaeKVsF185A/exec';
 
   function validate() {
     let ok = true;
@@ -302,24 +305,20 @@
     btn.textContent = 'Sending...';
     document.getElementById('form-error').style.display = 'none';
 
-    const data = {
-      'Guest 1':              document.getElementById('name1').value.trim(),
-      'Guest 2':              document.getElementById('name2').value.trim(),
-      'Email':                document.getElementById('email').value.trim(),
-      'Phone':                document.getElementById('phone').value.trim(),
-      'Dietary Requirements': document.getElementById('dietaries').value.trim(),
-      'Shot of Choice':       document.getElementById('shot').value.trim(),
-      'Dance Floor Banger':   document.getElementById('banger').value.trim(),
-      // Formspree special fields
-      '_replyto': document.getElementById('email').value.trim(),
-      '_subject': 'Wedding RSVP — ' + document.getElementById('name1').value.trim()
-    };
+    const data = new URLSearchParams({
+      name1:     document.getElementById('name1').value.trim(),
+      name2:     document.getElementById('name2').value.trim(),
+      email:     document.getElementById('email').value.trim(),
+      phone:     document.getElementById('phone').value.trim(),
+      dietaries: document.getElementById('dietaries').value.trim(),
+      shot:      document.getElementById('shot').value.trim(),
+      banger:    document.getElementById('banger').value.trim()
+    });
 
     try {
-      const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+      const res = await fetch(SHEET_URL, {
         method: 'POST',
-        headers: { 'Accept':'application/json', 'Content-Type':'application/json' },
-        body: JSON.stringify(data)
+        body: data          // form-encoded: avoids a CORS preflight
       });
       if (!res.ok) throw new Error();
       showSuccess();
