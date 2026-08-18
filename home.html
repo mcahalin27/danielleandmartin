@@ -147,47 +147,66 @@
     .travel-intro strong { font-weight:400; font-style:normal; color:var(--charcoal); }
 
     /* HOTEL CAROUSEL */
-    .hotel-carousel { display:flex; align-items:stretch; gap:10px; }
-    .hotel-slides { flex:1; overflow:hidden; }
-    .hotel-slide { display:none; }
-    .hotel-slide.active { display:block; }
-    .hotel-card { background:white; border:1px solid var(--border); padding:32px; height:100%; }
-    .hotel-name { font-size:1.3rem; color:var(--charcoal); margin-bottom:4px; }
-    .hotel-stars { color:var(--sage); font-size:0.8rem; margin-bottom:10px; letter-spacing:2px; }
-    .hotel-address { font-size:0.85rem; color:var(--warm-grey); font-style:italic; margin-bottom:14px; }
-    .hotel-desc { font-size:0.98rem; color:#555; line-height:1.8; margin-bottom:22px; }
-    .hotel-link {
-      font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
-      color:var(--sage-dark); text-decoration:none;
-      border-bottom:1px solid var(--sage-light); padding-bottom:2px; transition:border-color 0.2s;
-    }
-    .hotel-link:hover { border-color:var(--sage-dark); }
+    /* ── GENERIC CAROUSEL ── */
+    .carousel { margin-bottom:8px; }
+    .carousel-row { display:flex; align-items:stretch; gap:10px; }
+    .carousel-slides { flex:1; overflow:hidden; }
+    .carousel-slide { display:none; }
+    .carousel-slide.active { display:block; animation:slideFade 0.35s ease; }
+    @keyframes slideFade { from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
     .carousel-arrow {
       width:44px; min-width:44px; border:1px solid var(--border); background:white;
       font-size:1.5rem; color:var(--sage-dark); cursor:pointer;
       display:flex; align-items:center; justify-content:center;
-      transition:all 0.2s; user-select:none;
+      transition:all 0.2s; user-select:none; font-family:'Cormorant Garamond',serif;
     }
     .carousel-arrow:hover { background:var(--sage); color:white; border-color:var(--sage); }
-    .hotel-dots { display:flex; justify-content:center; gap:8px; margin-top:18px; }
-    .hotel-dot { width:8px; height:8px; border-radius:50%; background:var(--border); cursor:pointer; transition:background 0.2s; }
-    .hotel-dot.active { background:var(--sage); }
+    .carousel-dots { display:flex; justify-content:center; gap:8px; margin-top:18px; }
+    .carousel-dot { width:8px; height:8px; border-radius:50%; background:var(--border); cursor:pointer; transition:background 0.2s; }
+    .carousel-dot.active { background:var(--sage); }
+    .carousel-count { text-align:center; font-size:0.72rem; color:var(--warm-grey); font-style:italic; margin-top:8px; }
+
+    /* ── CARD (used inside carousels) ── */
+    .c-card { background:white; border:1px solid var(--border); padding:32px; height:100%; }
+    .c-name { font-size:1.3rem; color:var(--charcoal); margin-bottom:4px; }
+    .c-stars { color:var(--sage); font-size:0.8rem; margin-bottom:10px; letter-spacing:2px; }
+    .c-meta { font-size:0.85rem; color:var(--warm-grey); font-style:italic; margin-bottom:14px; }
+    .c-desc { font-size:0.98rem; color:#555; line-height:1.8; margin-bottom:22px; }
+    .c-link {
+      font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--sage-dark); text-decoration:none;
+      border-bottom:1px solid var(--sage-light); padding-bottom:2px; transition:border-color 0.2s;
+    }
+    .c-link:hover { border-color:var(--sage-dark); }
 
     /* ── FAQs ── */
-    .faq-item { border-bottom:1px solid var(--border); padding:22px 0; }
+    .faq-item { border-bottom:1px solid var(--border); }
     .faq-item:first-child { border-top:1px solid var(--border); }
-    .faq-q { font-size:1.05rem; color:var(--charcoal); margin-bottom:8px; }
-    .faq-a { font-size:0.98rem; color:#666; font-style:italic; line-height:1.75; }
+    .faq-q {
+      font-size:1.05rem; color:var(--charcoal); cursor:pointer;
+      padding:20px 40px 20px 0; position:relative; margin:0;
+      transition:color 0.2s; user-select:none;
+    }
+    .faq-q:hover { color:var(--sage-dark); }
+    .faq-q::after {
+      content:'+'; position:absolute; right:6px; top:50%;
+      transform:translateY(-50%); font-size:1.4rem; font-weight:300;
+      color:var(--sage); transition:transform 0.3s;
+    }
+    .faq-item.open .faq-q::after { content:'\2212'; }
+    .faq-a-wrap { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+    .faq-item.open .faq-a-wrap { max-height:340px; }
+    .faq-a { font-size:0.98rem; color:#666; font-style:italic; line-height:1.75; padding:0 40px 22px 0; margin:0; }
 
     /* ── NON-IRISH GUESTS ── */
     .nig-block { margin-bottom:48px; }
     .nig-block:last-child { margin-bottom:0; }
     .nig-heading { font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:22px; padding-bottom:10px; border-bottom:1px solid var(--border); }
-    .nig-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px; }
-    .nig-card { background:white; border:1px solid var(--border); padding:24px; }
-    .nig-dist { font-size:0.68rem; color:var(--sage-dark); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px; display:block; }
-    .nig-card h4 { font-size:1.05rem; font-weight:400; color:var(--charcoal); margin-bottom:8px; }
-    .nig-card p { font-size:0.92rem; color:#666; font-style:italic; line-height:1.7; }
+    .nig-intro { font-size:0.95rem; color:#666; font-style:italic; line-height:1.7; margin-bottom:20px; }
+    .tips-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+    .tip-card { background:white; border:1px solid var(--border); border-left:3px solid var(--sage); padding:22px 24px; }
+    .tip-card h4 { font-size:1rem; font-weight:400; color:var(--charcoal); margin-bottom:8px; line-height:1.4; }
+    .tip-card p { font-size:0.9rem; color:#666; font-style:italic; line-height:1.7; }
 
     /* ── FOOTER ── */
     footer { text-align:center; padding:40px 20px; background:var(--cream); }
@@ -203,7 +222,7 @@
       .details-section { grid-template-columns:1fr; }
       .section-content { padding:40px 20px 52px; }
       .timeline-item { grid-template-columns:70px 26px 1fr; }
-      .hotel-card { padding:24px; }
+      .c-card { padding:24px; }
     }
   </style>
 </head>
@@ -450,30 +469,76 @@
 <!-- ══════════════ TRAVEL & ACCOMMODATION ══════════════ -->
 <section id="travel" class="wm-section">
 
-  <!-- Mr Worldwide watermark -->
+  <!-- Bouquet watermark -->
   <svg class="watermark" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="#2c2c2c">
-      <!-- shoulders / suit -->
-      <path d="M60 400 C60 322 112 288 160 274 L200 300 L240 274 C288 288 340 322 340 400 Z"/>
-      <!-- shirt V -->
-      <path d="M172 280 L200 336 L228 280 L212 272 L200 300 L188 272 Z" fill="#faf8f4"/>
-      <!-- neck -->
-      <path d="M176 236 L224 236 L224 286 L200 300 L176 286 Z"/>
-      <!-- head -->
-      <ellipse cx="200" cy="164" rx="74" ry="86"/>
-      <!-- ears -->
-      <ellipse cx="126" cy="168" rx="12" ry="20"/>
-      <ellipse cx="274" cy="168" rx="12" ry="20"/>
+    <g stroke="#5a7a54" stroke-width="2.5" fill="none" stroke-linecap="round">
+      <path d="M200 250 L200 380"/>
+      <path d="M200 260 C170 290 155 330 158 375"/>
+      <path d="M200 260 C230 290 245 330 242 375"/>
+      <path d="M200 265 C182 300 176 340 180 378"/>
+      <path d="M200 265 C218 300 224 340 220 378"/>
     </g>
-    <!-- sunglasses -->
-    <g fill="#faf8f4">
-      <rect x="142" y="140" width="52" height="34" rx="14"/>
-      <rect x="206" y="140" width="52" height="34" rx="14"/>
-      <rect x="194" y="152" width="12" height="6"/>
+    <g fill="#5a7a54">
+      <ellipse cx="152" cy="292" rx="20" ry="9" transform="rotate(-32 152 292)"/>
+      <ellipse cx="248" cy="292" rx="20" ry="9" transform="rotate(32 248 292)"/>
+      <ellipse cx="163" cy="333" rx="17" ry="8" transform="rotate(-26 163 333)"/>
+      <ellipse cx="237" cy="333" rx="17" ry="8" transform="rotate(26 237 333)"/>
     </g>
-    <!-- goatee -->
-    <g fill="#faf8f4" opacity="0.55">
-      <path d="M178 214 Q200 226 222 214 Q214 240 200 244 Q186 240 178 214 Z"/>
+    <!-- flowers -->
+    <g fill="#5a7a54">
+      <g transform="translate(200,120)">
+        <ellipse rx="15" ry="42" cy="-30"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(60)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(120)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(180)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(240)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(300)"/>
+        <circle r="18" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(118,168) scale(0.8)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(282,168) scale(0.8)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(150,232) scale(0.62)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(250,232) scale(0.62)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+    </g>
+    <!-- foliage -->
+    <g fill="#7d9b76" opacity="0.8">
+      <ellipse cx="92" cy="238" rx="34" ry="13" transform="rotate(-40 92 238)"/>
+      <ellipse cx="308" cy="238" rx="34" ry="13" transform="rotate(40 308 238)"/>
+      <ellipse cx="200" cy="46" rx="13" ry="30"/>
+    </g>
+    <!-- ribbon -->
+    <g stroke="#5a7a54" stroke-width="6" fill="none" stroke-linecap="round">
+      <path d="M168 288 Q200 302 232 288"/>
+      <path d="M200 296 Q176 320 166 344"/>
+      <path d="M200 296 Q224 320 234 344"/>
     </g>
   </svg>
 
@@ -490,45 +555,46 @@
     </p>
 
     <span class="travel-label">Where to Stay</span>
-    <div class="hotel-carousel">
-      <button class="carousel-arrow" onclick="changeHotel(-1)">&#8249;</button>
-      <div class="hotel-slides">
+    <div class="carousel">
+      <div class="carousel-row">
+        <button class="carousel-arrow" data-prev>&#8249;</button>
+        <div class="carousel-slides">
 
-        <div class="hotel-slide active">
-          <div class="hotel-card">
-            <div class="hotel-name">Dooly's Hotel</div>
-            <div class="hotel-stars">★★★</div>
-            <div class="hotel-address">Emmet Square, Birr, Co. Offaly</div>
-            <p class="hotel-desc">A beloved Birr institution dating back to 1747 and one of the oldest coaching inns in the country. Right in the heart of town on Emmet Square, with 17 cosy ensuite rooms and the atmospheric Coach House Bar — live music on Saturdays.</p>
-            <a href="https://www.doolyshotel.ie/" target="_blank" class="hotel-link">Visit Website &rarr;</a>
+          <div class="carousel-slide active">
+            <div class="c-card">
+              <div class="c-name">Dooly's Hotel</div>
+              <div class="c-stars">&#9733;&#9733;&#9733;</div>
+              <div class="c-meta">Emmet Square, Birr, Co. Offaly</div>
+              <p class="c-desc">A beloved Birr institution dating back to 1747 and one of the oldest coaching inns in the country. Right in the heart of town on Emmet Square, with 17 cosy ensuite rooms and the atmospheric Coach House Bar &mdash; live music on Saturdays.</p>
+              <a href="https://www.doolyshotel.ie/" target="_blank" class="c-link">Visit Website &rarr;</a>
+            </div>
           </div>
-        </div>
 
-        <div class="hotel-slide">
-          <div class="hotel-card">
-            <div class="hotel-name">County Arms Hotel</div>
-            <div class="hotel-stars">★★★★</div>
-            <div class="hotel-address">Railway Road, Birr, Co. Offaly, R42 Y568</div>
-            <p class="hotel-desc">Birr's only four-star hotel, set on a beautiful nine-acre Georgian estate built in 1809. Seventy contemporary bedrooms, The Springs Leisure Club with pool, sauna and spa, plus Hackett's Eatery and the Shaker Room cocktail bar.</p>
-            <a href="https://www.countyarms.ie/" target="_blank" class="hotel-link">Visit Website &rarr;</a>
+          <div class="carousel-slide">
+            <div class="c-card">
+              <div class="c-name">County Arms Hotel</div>
+              <div class="c-stars">&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="c-meta">Railway Road, Birr, Co. Offaly, R42 Y568</div>
+              <p class="c-desc">Birr's only four-star hotel, set on a beautiful nine-acre Georgian estate built in 1809. Seventy contemporary bedrooms, The Springs Leisure Club with pool, sauna and spa, plus Hackett's Eatery and the Shaker Room cocktail bar.</p>
+              <a href="https://www.countyarms.ie/" target="_blank" class="c-link">Visit Website &rarr;</a>
+            </div>
           </div>
-        </div>
 
-        <div class="hotel-slide">
-          <div class="hotel-card">
-            <div class="hotel-name">Townsend House</div>
-            <div class="hotel-stars">★★★</div>
-            <div class="hotel-address">Townsend Street, Birr, Co. Offaly, R42 TK88</div>
-            <p class="hotel-desc">Birr's top-rated guesthouse — an elegant 19th-century Georgian house with ten individually decorated ensuite rooms, a lovely tapas restaurant and wine bar, mature gardens and private courtyard parking.</p>
-            <a href="https://townsendhouse.ie/" target="_blank" class="hotel-link">Visit Website &rarr;</a>
+          <div class="carousel-slide">
+            <div class="c-card">
+              <div class="c-name">Townsend House</div>
+              <div class="c-stars">&#9733;&#9733;&#9733;</div>
+              <div class="c-meta">Townsend Street, Birr, Co. Offaly, R42 TK88</div>
+              <p class="c-desc">Birr's top-rated guesthouse &mdash; an elegant 19th-century Georgian house with ten individually decorated ensuite rooms, a lovely tapas restaurant and wine bar, mature gardens and private courtyard parking.</p>
+              <a href="https://townsendhouse.ie/" target="_blank" class="c-link">Visit Website &rarr;</a>
+            </div>
           </div>
-        </div>
 
+        </div>
+        <button class="carousel-arrow" data-next>&#8250;</button>
       </div>
-      <button class="carousel-arrow" onclick="changeHotel(1)">&#8250;</button>
+      <div class="carousel-dots"></div>
     </div>
-    <div class="hotel-dots">
-      <div class="hotel-dot active" onclick="showHotel(0)"></div>
       <div class="hotel-dot" onclick="showHotel(1)"></div>
       <div class="hotel-dot" onclick="showHotel(2)"></div>
     </div>
@@ -617,35 +683,35 @@
   <div class="section-content fade-in">
     <div class="faq-item">
       <p class="faq-q">What time does the ceremony start?</p>
-      <p class="faq-a">The ceremony begins at 3:00pm. Shuttles depart Birr town at 1:45pm — we recommend hopping on the bus so you're seated in plenty of time.</p>
+      <div class="faq-a-wrap"><p class="faq-a">The ceremony begins at 3:00pm. Shuttles depart Birr town at 1:45pm — we recommend hopping on the bus so you're seated in plenty of time.</p></div>
     </div>
     <div class="faq-item">
       <p class="faq-q">What is the dress code?</p>
-      <p class="faq-a">Black Tie. We'd love to see everyone dressed to the nines — it's going to be a beautiful evening.</p>
+      <div class="faq-a-wrap"><p class="faq-a">Black Tie. We'd love to see everyone dressed to the nines — it's going to be a beautiful evening.</p></div>
     </div>
     <div class="faq-item">
       <p class="faq-q">Is there parking at the venue?</p>
-      <p class="faq-a">Yes, parking is available at Gloster House. Full details to follow closer to the date.</p>
+      <div class="faq-a-wrap"><p class="faq-a">Yes, parking is available at Gloster House. Full details to follow closer to the date.</p></div>
     </div>
     <div class="faq-item">
       <p class="faq-q">Are children welcome?</p>
-      <p class="faq-a">We love your little ones, but the evening reception is adults only. More details to follow closer to the date.</p>
+      <div class="faq-a-wrap"><p class="faq-a">We love your little ones, but the evening reception is adults only. More details to follow closer to the date.</p></div>
     </div>
     <div class="faq-item">
       <p class="faq-q">Will there be a bus service?</p>
-      <p class="faq-a">Yes! Shuttles depart Birr at 1:45pm on Friday and the final bus back to Birr leaves at 3:30am. On Day Two, buses to Birr depart Gloster House at 7:00pm. Pick-up point details to follow.</p>
+      <div class="faq-a-wrap"><p class="faq-a">Yes! Shuttles depart Birr at 1:45pm on Friday and the final bus back to Birr leaves at 3:30am. On Day Two, buses to Birr depart Gloster House at 7:00pm. Pick-up point details to follow.</p></div>
     </div>
     <div class="faq-item">
       <p class="faq-q">Is there a Day Two?</p>
-      <p class="faq-a">Absolutely — and we'd love you to join us. BBQ and live music at Gloster House from 2:30pm on Saturday 12 June, followed by Ceol agus Craic at Craughwell's in Birr from 7:30pm.</p>
+      <div class="faq-a-wrap"><p class="faq-a">Absolutely — and we'd love you to join us. BBQ and live music at Gloster House from 2:30pm on Saturday 12 June, followed by Ceol agus Craic at Craughwell's in Birr from 7:30pm.</p></div>
     </div>
     <div class="faq-item">
       <p class="faq-q">What is the nearest airport?</p>
-      <p class="faq-a">Dublin Airport is the most straightforward, roughly 1 hour 30 minutes away. Shannon is about an hour and is a great option for those flying from the US.</p>
+      <div class="faq-a-wrap"><p class="faq-a">Dublin Airport is the most straightforward, roughly 1 hour 30 minutes away. Shannon is about an hour and is a great option for those flying from the US.</p></div>
     </div>
     <div class="faq-item">
       <p class="faq-q">What if I can't make it?</p>
-      <p class="faq-a">We'll miss you! Please let us know as soon as you can so we can plan accordingly.</p>
+      <div class="faq-a-wrap"><p class="faq-a">We'll miss you! Please let us know as soon as you can so we can plan accordingly.</p></div>
     </div>
   </div>
 </section>
@@ -653,23 +719,76 @@
 <!-- ══════════════ NON-IRISH GUESTS ══════════════ -->
 <section id="non-irish-guests" class="wm-section">
 
-  <!-- Mr Worldwide watermark -->
+  <!-- Bouquet watermark -->
   <svg class="watermark" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="#2c2c2c">
-      <path d="M60 400 C60 322 112 288 160 274 L200 300 L240 274 C288 288 340 322 340 400 Z"/>
-      <path d="M172 280 L200 336 L228 280 L212 272 L200 300 L188 272 Z" fill="#faf8f4"/>
-      <path d="M176 236 L224 236 L224 286 L200 300 L176 286 Z"/>
-      <ellipse cx="200" cy="164" rx="74" ry="86"/>
-      <ellipse cx="126" cy="168" rx="12" ry="20"/>
-      <ellipse cx="274" cy="168" rx="12" ry="20"/>
+    <g stroke="#5a7a54" stroke-width="2.5" fill="none" stroke-linecap="round">
+      <path d="M200 250 L200 380"/>
+      <path d="M200 260 C170 290 155 330 158 375"/>
+      <path d="M200 260 C230 290 245 330 242 375"/>
+      <path d="M200 265 C182 300 176 340 180 378"/>
+      <path d="M200 265 C218 300 224 340 220 378"/>
     </g>
-    <g fill="#faf8f4">
-      <rect x="142" y="140" width="52" height="34" rx="14"/>
-      <rect x="206" y="140" width="52" height="34" rx="14"/>
-      <rect x="194" y="152" width="12" height="6"/>
+    <g fill="#5a7a54">
+      <ellipse cx="152" cy="292" rx="20" ry="9" transform="rotate(-32 152 292)"/>
+      <ellipse cx="248" cy="292" rx="20" ry="9" transform="rotate(32 248 292)"/>
+      <ellipse cx="163" cy="333" rx="17" ry="8" transform="rotate(-26 163 333)"/>
+      <ellipse cx="237" cy="333" rx="17" ry="8" transform="rotate(26 237 333)"/>
     </g>
-    <g fill="#faf8f4" opacity="0.55">
-      <path d="M178 214 Q200 226 222 214 Q214 240 200 244 Q186 240 178 214 Z"/>
+    <!-- flowers -->
+    <g fill="#5a7a54">
+      <g transform="translate(200,120)">
+        <ellipse rx="15" ry="42" cy="-30"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(60)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(120)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(180)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(240)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(300)"/>
+        <circle r="18" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(118,168) scale(0.8)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(282,168) scale(0.8)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(150,232) scale(0.62)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(250,232) scale(0.62)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+    </g>
+    <!-- foliage -->
+    <g fill="#7d9b76" opacity="0.8">
+      <ellipse cx="92" cy="238" rx="34" ry="13" transform="rotate(-40 92 238)"/>
+      <ellipse cx="308" cy="238" rx="34" ry="13" transform="rotate(40 308 238)"/>
+      <ellipse cx="200" cy="46" rx="13" ry="30"/>
+    </g>
+    <!-- ribbon -->
+    <g stroke="#5a7a54" stroke-width="6" fill="none" stroke-linecap="round">
+      <path d="M168 288 Q200 302 232 288"/>
+      <path d="M200 296 Q176 320 166 344"/>
+      <path d="M200 296 Q224 320 234 344"/>
     </g>
   </svg>
 
@@ -681,83 +800,342 @@
   <div class="section-content fade-in">
 
     <div class="nig-block">
-      <div class="nig-heading">⛳ Golf</div>
-      <div class="nig-grid">
-        <div class="nig-card">
-          <span class="nig-dist">5 mins · Birr</span>
-          <h4>Birr Golf Club</h4>
-          <p>A charming 18-hole parkland course right on the doorstep. Perfect for a relaxed round before the weekend kicks off.</p>
+      <div class="nig-heading">&#127866; Pubs in Birr</div>
+      <p class="nig-intro">Our local haunts for the weekend.</p>
+      <div class="carousel">
+        <div class="carousel-row">
+          <button class="carousel-arrow" data-prev>&#8249;</button>
+          <div class="carousel-slides">
+            <div class="carousel-slide active">
+              <div class="c-card">
+                <div class="c-name">Craughwell's</div>
+                <div class="c-meta">Castle Street, Birr</div>
+                <p class="c-desc">Our Day Two headquarters. A proper old-school Birr pub with great atmosphere and a fine spot for a trad session. This is where Ceol agus Craic kicks off at 7:30pm on the Saturday.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Kennedy's</div>
+                <div class="c-meta">Birr, Co. Offaly</div>
+                <p class="c-desc">A well-loved local with a warm welcome and a good pint. Popular with Birr regulars and a reliable choice for a relaxed evening.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">The Chestnut</div>
+                <div class="c-meta">Green Street, Birr</div>
+                <p class="c-desc">Where we'll be on the Thursday evening from 8:30pm after the rehearsal dinner. A characterful craft bar in a beautiful old stone building &mdash; one of the nicest spots in town.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">The Thatch</div>
+                <div class="c-meta">Crinkill, near Birr</div>
+                <p class="c-desc">A classic thatched country pub just outside Birr in Crinkill. Great food, cosy fires and exactly the sort of place you picture when you think of an Irish pub.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-arrow" data-next>&#8250;</button>
         </div>
-        <div class="nig-card">
-          <span class="nig-dist">30 mins · Tullamore</span>
-          <h4>Esker Hills Golf Club</h4>
-          <p>A superb heathland course consistently rated among the best inland courses in Ireland. Well worth the short drive.</p>
-        </div>
-        <div class="nig-card">
-          <span class="nig-dist">1 hr 30 · Co. Clare</span>
-          <h4>Lahinch Golf Club</h4>
-          <p>One of Ireland's great links courses on the Wild Atlantic Way — classic dunes terrain and spectacular ocean views.</p>
-        </div>
-        <div class="nig-card">
-          <span class="nig-dist">2 hrs 30 · Co. Kerry</span>
-          <h4>Ballybunion Golf Club</h4>
-          <p>Widely regarded as one of the finest links courses in the world. A genuine bucket-list round if you have the time.</p>
-        </div>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
     <div class="nig-block">
-      <div class="nig-heading">🏘️ Towns to Visit</div>
-      <div class="nig-grid">
-        <div class="nig-card">
-          <span class="nig-dist">1 hr 30 · Co. Galway</span>
-          <h4>Galway</h4>
-          <p>Ireland's cultural capital. Buzzing streets, brilliant restaurants, trad music in every second pub and the famous Quay Street.</p>
+      <div class="nig-heading">&#127867; Pubs in Dublin</div>
+      <p class="nig-intro">If you have a night in the capital before or after, these are our picks.</p>
+      <div class="carousel">
+        <div class="carousel-row">
+          <button class="carousel-arrow" data-prev>&#8249;</button>
+          <div class="carousel-slides">
+            <div class="carousel-slide active">
+              <div class="c-card">
+                <div class="c-name">O'Donoghue's</div>
+                <div class="c-meta">Merrion Row, Dublin 2</div>
+                <p class="c-desc">A Dublin institution and the spiritual home of Irish trad music &mdash; The Dubliners played here regularly. Live sessions most nights and always buzzing.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">The Gingerman</div>
+                <div class="c-meta">Fenian Street, Dublin 2</div>
+                <p class="c-desc">A small, traditional pub near Merrion Square with a genuinely local feel. No frills, no gimmicks, just a very good pint.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Smyth's</div>
+                <div class="c-meta">Haddington Road, Dublin 4</div>
+                <p class="c-desc">A superb Dublin 4 local with a great crowd and one of the better pints of Guinness in the city. Popular on rugby days.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Fitzgerald's</div>
+                <div class="c-meta">Sandycove, Co. Dublin</div>
+                <p class="c-desc">A lovely coastal pub in Sandycove, minutes from the Forty Foot. Perfect for a pint after a walk along the seafront.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">The Blue Light</div>
+                <div class="c-meta">Barnacullia, Sandyford</div>
+                <p class="c-desc">Up in the Dublin Mountains with panoramic views over the whole city and bay. Sunsets here are hard to beat and there's often live music outside.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Finnegan's</div>
+                <div class="c-meta">Dalkey, Co. Dublin</div>
+                <p class="c-desc">A famous Dalkey pub with a long list of well-known regulars over the years. Great atmosphere and a lovely village setting.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">The Kings Inn</div>
+                <div class="c-meta">Dalkey, Co. Dublin</div>
+                <p class="c-desc">Another Dalkey favourite, right in the heart of the village. Well worth combining with a walk up Killiney Hill for the views.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Searsons</div>
+                <div class="c-meta">Baggot Street, Dublin 4</div>
+                <p class="c-desc">A smart Baggot Street bar that's equally good for an early evening pint or a long session. Excellent food and a big rugby crowd.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-arrow" data-next>&#8250;</button>
         </div>
-        <div class="nig-card">
-          <span class="nig-dist">2 hrs 30 · Co. Kerry</span>
-          <h4>Dingle</h4>
-          <p>A beautiful harbour town between the Atlantic and the mountains. Exceptional seafood, cosy pubs and dramatic scenery.</p>
-        </div>
-        <div class="nig-card">
-          <span class="nig-dist">2 hrs · Co. Cork</span>
-          <h4>Kinsale</h4>
-          <p>Ireland's gourmet capital — a colourful coastal town with excellent restaurants and a lovely harbour setting.</p>
-        </div>
-        <div class="nig-card">
-          <span class="nig-dist">1 hr · Co. Kilkenny</span>
-          <h4>Kilkenny</h4>
-          <p>A beautifully preserved medieval city with a magnificent castle, a strong craft scene and some very good pubs.</p>
-        </div>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
     <div class="nig-block">
-      <div class="nig-heading">🚗 Road Trips</div>
-      <div class="nig-grid">
-        <div class="nig-card">
-          <span class="nig-dist">Multi-day · West Coast</span>
-          <h4>The Wild Atlantic Way</h4>
-          <p>Ireland's epic 2,500km coastal route from Donegal to Cork. Even a single day along the Clare and Galway stretch is unforgettable.</p>
+      <div class="nig-heading">&#9971; Golf</div>
+      <div class="carousel">
+        <div class="carousel-row">
+          <button class="carousel-arrow" data-prev>&#8249;</button>
+          <div class="carousel-slides">
+            <div class="carousel-slide active">
+              <div class="c-card">
+                <div class="c-name">Birr Golf Club</div>
+                <div class="c-meta">5 minutes from Birr &middot; Parkland</div>
+                <p class="c-desc">A charming 18-hole parkland course right on the doorstep, laid out over gently rolling esker terrain. Perfect for a relaxed round before the weekend kicks off.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Esker Hills Golf Club</div>
+                <div class="c-meta">30 minutes &middot; Tullamore, Co. Offaly</div>
+                <p class="c-desc">A superb heathland course consistently rated among the best inland courses in Ireland, with dramatic natural contours and glacial valleys. Well worth the short drive.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Lahinch Golf Club</div>
+                <div class="c-meta">1 hr 30 &middot; Co. Clare</div>
+                <p class="c-desc">One of Ireland's great links courses, on the Wild Atlantic Way. Classic dunes terrain, blind shots and spectacular ocean views. Book well ahead.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Ballybunion Golf Club</div>
+                <div class="c-meta">2 hrs 30 &middot; Co. Kerry</div>
+                <p class="c-desc">Widely regarded as one of the finest links courses in the world. A genuine bucket-list round if you can find the time to get down to Kerry.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Portmarnock Golf Club</div>
+                <div class="c-meta">2 hrs &middot; North Co. Dublin</div>
+                <p class="c-desc">A championship links on a peninsula north of Dublin, and a former Irish Open host. Very convenient if you're flying in or out of Dublin.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-arrow" data-next>&#8250;</button>
         </div>
-        <div class="nig-card">
-          <span class="nig-dist">1 hr · Co. Clare</span>
-          <h4>Cliffs of Moher &amp; The Burren</h4>
-          <p>Ireland's most iconic natural landmark, with 8km of cliffs rising 200m above the Atlantic. Pair it with the lunar landscape of the Burren.</p>
-        </div>
-        <div class="nig-card">
-          <span class="nig-dist">2 hrs 30 · Co. Kerry</span>
-          <h4>The Ring of Kerry</h4>
-          <p>A classic 179km loop around the Iveragh Peninsula taking in mountains, lakes and coastline. One of Europe's great drives.</p>
-        </div>
-        <div class="nig-card">
-          <span class="nig-dist">25 mins · Co. Offaly</span>
-          <h4>Clonmacnoise</h4>
-          <p>One of Ireland's most important early Christian monastic sites, sitting peacefully on the banks of the River Shannon.</p>
-        </div>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
+    <div class="nig-block">
+      <div class="nig-heading">&#127962; Towns to Visit</div>
+      <div class="carousel">
+        <div class="carousel-row">
+          <button class="carousel-arrow" data-prev>&#8249;</button>
+          <div class="carousel-slides">
+            <div class="carousel-slide active">
+              <div class="c-card">
+                <div class="c-name">Galway</div>
+                <div class="c-meta">1 hr 30 &middot; Co. Galway</div>
+                <p class="c-desc">Ireland's cultural capital. Buzzing streets, brilliant restaurants, trad music in every second pub and the famous Quay Street. Compact, walkable and hard not to love.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Dingle</div>
+                <div class="c-meta">2 hrs 30 &middot; Co. Kerry</div>
+                <p class="c-desc">A beautiful harbour town wedged between the Atlantic and the mountains. Exceptional seafood, cosy pubs, a working fishing fleet and dramatic scenery in every direction.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Kinsale</div>
+                <div class="c-meta">2 hrs &middot; Co. Cork</div>
+                <p class="c-desc">Ireland's gourmet capital &mdash; a colourful coastal town with excellent restaurants, a pretty harbour and the striking star-shaped Charles Fort just outside.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Kilkenny</div>
+                <div class="c-meta">1 hr &middot; Co. Kilkenny</div>
+                <p class="c-desc">A beautifully preserved medieval city with a magnificent castle, a strong craft and design scene and some very good pubs along the Medieval Mile.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Westport</div>
+                <div class="c-meta">2 hrs 30 &middot; Co. Mayo</div>
+                <p class="c-desc">A gorgeous Georgian town at the foot of Croagh Patrick on Clew Bay. Great pubs, live music and a jumping-off point for Achill Island.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Kenmare</div>
+                <div class="c-meta">3 hrs &middot; Co. Kerry</div>
+                <p class="c-desc">A charming, brightly painted town at the meeting point of the Ring of Kerry and the Ring of Beara. Superb food and a lovely base for exploring the southwest.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-arrow" data-next>&#8250;</button>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+
+    <div class="nig-block">
+      <div class="nig-heading">&#128663; Road Trips</div>
+      <div class="carousel">
+        <div class="carousel-row">
+          <button class="carousel-arrow" data-prev>&#8249;</button>
+          <div class="carousel-slides">
+            <div class="carousel-slide active">
+              <div class="c-card">
+                <div class="c-name">The Wild Atlantic Way</div>
+                <div class="c-meta">Multi-day &middot; West Coast</div>
+                <p class="c-desc">Ireland's epic 2,500km coastal route running from Donegal down to Cork. You don't need to drive all of it &mdash; even a single day along the Clare and Galway stretch is unforgettable.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Cliffs of Moher &amp; The Burren</div>
+                <div class="c-meta">1 hr &middot; Co. Clare</div>
+                <p class="c-desc">Ireland's most iconic natural landmark, with 8km of cliffs rising over 200m above the Atlantic. Pair it with the extraordinary lunar limestone landscape of the Burren.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">The Ring of Kerry</div>
+                <div class="c-meta">2 hrs 30 to reach &middot; Co. Kerry</div>
+                <p class="c-desc">A classic 179km loop around the Iveragh Peninsula taking in mountains, lakes, beaches and coastline. One of Europe's great drives &mdash; allow a full day.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Connemara</div>
+                <div class="c-meta">2 hrs &middot; Co. Galway</div>
+                <p class="c-desc">Wild, empty and stunningly beautiful. Bog, mountains and lakes, with Kylemore Abbey and the Twelve Bens. Arguably the most atmospheric landscape in the country.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Clonmacnoise</div>
+                <div class="c-meta">25 minutes &middot; Co. Offaly</div>
+                <p class="c-desc">One of Ireland's most important early Christian monastic sites, founded in the 6th century and sitting peacefully on the banks of the River Shannon. Very close to Gloster.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="c-card">
+                <div class="c-name">Giant&rsquo;s Causeway</div>
+                <div class="c-meta">3 hrs 30 &middot; Co. Antrim</div>
+                <p class="c-desc">A UNESCO World Heritage Site of 40,000 interlocking basalt columns on the Antrim coast. A long drive but a spectacular one, and easily combined with Belfast.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-arrow" data-next>&#8250;</button>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+
+    <div class="nig-block">
+      <div class="nig-heading">&#127808; Irish Wedding Tips</div>
+      <p class="nig-intro">If this is your first Irish wedding, a few things tend to catch visitors out. Here's what to expect.</p>
+      <div class="tips-grid">
+
+        <div class="tip-card">
+          <h4>Day Two is a real event, not a recovery day</h4>
+          <p>This is the big one for our Australian guests. Day Two is not a quiet debrief over a coffee &mdash; it's a full second day of drinking, eating and music that runs from 2:30pm until late. Pace yourself on the Friday accordingly.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Don't book an early Sunday flight</h4>
+          <p>Following on from the above: Saturday night in Birr will go long. A Sunday morning flight out of Dublin means leaving before dawn on very little sleep. Fly Sunday evening or Monday if you possibly can.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>The day starts early and finishes very late</h4>
+          <p>A 3pm ceremony and a 3:30am final bus makes for a twelve-hour day. That's completely standard here. Nobody slips away after dinner &mdash; staying to the end is the norm, not the exception.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>There will be a second dinner</h4>
+          <p>Late in the night, usually around midnight, more food appears &mdash; sandwiches, cocktail sausages, sausage rolls, chips. This is a genuine Irish institution and one of the great joys of the night. Leave room.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Speeches come before dinner</h4>
+          <p>Ours are during the drinks reception. Irish weddings often front-load the speeches so everyone can relax afterwards, rather than the American style of speeches between courses.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Take the bus &mdash; the limits are strict</h4>
+          <p>Ireland's drink-driving limits are lower than Australia's, the US and much of Europe, and enforcement is serious. There is genuinely no safe number of drinks. That's exactly why we're running coaches both nights.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Rounds are a social contract</h4>
+          <p>In an Irish pub, one person buys drinks for the whole group, then the next person does. Don't offer to pay your share &mdash; just get the next round in. Skipping your turn is genuinely noticed.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Pack for four seasons in one day</h4>
+          <p>June averages around 15&ndash;19&deg;C and rain is always possible, even in a good week. Bring a layer for the evening and don't rely on the forecast. A wrap or jacket over black tie is completely normal here.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Tipping is modest</h4>
+          <p>Nothing like the US. Around 10&ndash;15% in restaurants is generous, and you don't tip at the bar at all. Taxi fares are usually just rounded up.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Practical bits</h4>
+          <p>The Republic uses the euro, not sterling. Plugs are the same three-pin type as the UK at 230V. Driving is on the left, and rural roads are narrower than you're expecting &mdash; allow more time than the map suggests.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Being asked to sing is a compliment</h4>
+          <p>Late in the night someone may call for a party piece. There is no expectation of talent whatsoever &mdash; enthusiasm counts for everything. Having one song you can get through is a genuinely useful thing to have in reserve.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>The band, then the DJ</h4>
+          <p>Live band first, DJ afterwards, running until the small hours. The dance floor is not optional in the way it might be elsewhere &mdash; expect everyone from grandparents to small children to be up there.</p>
+        </div>
+
+      </div>
+    </div>
   </div>
 </section>
 
@@ -780,17 +1158,37 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ── HOTEL CAROUSEL ──
-let hotelIdx = 0;
-function showHotel(i) {
-  document.querySelectorAll('.hotel-slide').forEach((s,j) => s.classList.toggle('active', j===i));
-  document.querySelectorAll('.hotel-dot').forEach((d,j)  => d.classList.toggle('active', j===i));
-  hotelIdx = i;
-}
-function changeHotel(dir) {
-  const n = document.querySelectorAll('.hotel-slide').length;
-  showHotel((hotelIdx + dir + n) % n);
-}
+// ── CAROUSELS (generic, works for any number on the page) ──
+document.querySelectorAll('.carousel').forEach(function (car) {
+  const slides = car.querySelectorAll('.carousel-slide');
+  const dotBox = car.querySelector('.carousel-dots');
+  if (!slides.length) return;
+  let idx = 0;
+
+  // build dots
+  slides.forEach(function (_, i) {
+    const d = document.createElement('div');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', function () { show(i); });
+    dotBox.appendChild(d);
+  });
+  const dots = dotBox.querySelectorAll('.carousel-dot');
+
+  function show(i) {
+    idx = (i + slides.length) % slides.length;
+    slides.forEach(function (s, j) { s.classList.toggle('active', j === idx); });
+    dots.forEach(function (d, j)   { d.classList.toggle('active', j === idx); });
+  }
+
+  car.querySelector('[data-prev]').addEventListener('click', function () { show(idx - 1); });
+  car.querySelector('[data-next]').addEventListener('click', function () { show(idx + 1); });
+});
+
+// ── FAQ ACCORDION ──
+document.querySelectorAll('.faq-item').forEach(function (item) {
+  const q = item.querySelector('.faq-q');
+  q.addEventListener('click', function () { item.classList.toggle('open'); });
+});
 
 // ── CONFETTI CANNONS ──
 const canvas = document.getElementById('confetti-canvas');
@@ -890,7 +1288,7 @@ const io = new IntersectionObserver(entries => {
       fireConfetti();
     }
   });
-}, { threshold: 0.25 });
+}, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
 
 document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 </script>
