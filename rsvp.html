@@ -267,12 +267,9 @@
   /*
   ─────────────────────────────────────────────────────────────
   TO COLLECT RSVPs (and export to Excel):
-  1. Go to https://formspree.io and create a free account
-  2. Click "New Form", name it "Wedding RSVP"
-  3. Copy your form ID (looks like: xabcdefg)
-  4. Replace YOUR_FORM_ID below with that ID
-  5. From the Formspree dashboard you can email-notify on each
-     submission and download all responses as CSV for Excel
+  RSVPs are sent to Formspree form xqpzgaoa.
+  View submissions and export to CSV/Excel at:
+  https://formspree.io/forms/xqpzgaoa/submissions
   ─────────────────────────────────────────────────────────────
   */
   const FORMSPREE_ID = 'xqpzgaoa';
@@ -312,13 +309,11 @@
       'Phone':                document.getElementById('phone').value.trim(),
       'Dietary Requirements': document.getElementById('dietaries').value.trim(),
       'Shot of Choice':       document.getElementById('shot').value.trim(),
-      'Dance Floor Banger':   document.getElementById('banger').value.trim()
+      'Dance Floor Banger':   document.getElementById('banger').value.trim(),
+      // Formspree special fields
+      '_replyto': document.getElementById('email').value.trim(),
+      '_subject': 'Wedding RSVP — ' + document.getElementById('name1').value.trim()
     };
-
-    if (FORMSPREE_ID === 'YOUR_FORM_ID') {   // test mode until configured
-      setTimeout(showSuccess, 500);
-      return;
-    }
 
     try {
       const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
