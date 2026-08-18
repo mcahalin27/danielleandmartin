@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Danielle & Martin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --cream: #faf8f4;
@@ -18,7 +18,7 @@
     body {
       background: var(--cream);
       color: var(--charcoal);
-      font-family: 'Lato', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       min-height: 100vh;
       display: flex;
@@ -26,143 +26,89 @@
     }
 
     /* TOP BAR */
-    .top-bar {
-      background: var(--sage);
-      padding: 10px 24px;
-      text-align: right;
-    }
+    .top-bar { background: var(--sage); padding: 10px 24px; text-align: right; }
     .top-bar a {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: white;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.5);
-      padding: 6px 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.78rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: white; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.6); padding: 6px 18px;
       transition: background 0.2s;
     }
     .top-bar a:hover { background: rgba(255,255,255,0.15); }
 
     /* MAIN */
-    .password-wrap {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
-    }
-    .password-inner { text-align: center; max-width: 480px; width: 100%; }
+    .password-wrap { flex:1; display:flex; align-items:center; justify-content:center; padding:60px 20px; }
+    .password-inner { text-align:center; max-width:480px; width:100%; }
 
     .script-title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: clamp(3rem, 8vw, 4.8rem);
-      color: var(--charcoal);
-      line-height: 1.1;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.8rem, 8vw, 4.2rem);
+      color: var(--charcoal); line-height: 1.1; margin-bottom: 6px;
     }
 
-    .divider {
-      display: flex; align-items: center; gap: 14px;
-      margin: 22px auto 30px; max-width: 280px;
-    }
-    .divider::before, .divider::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-    }
-    .divider span {
-      font-size: 0.65rem; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--warm-grey);
-    }
+    .divider { display:flex; align-items:center; gap:14px; margin:20px auto 28px; max-width:280px; }
+    .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
+    .divider span { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--warm-grey); }
 
-    .welcome-text {
-      font-size: 0.95rem; color: #777;
-      line-height: 1.8; margin-bottom: 36px;
-    }
+    .welcome-text { font-size:1rem; font-style:italic; color:#777; line-height:1.7; margin-bottom:36px; }
 
     input[type="password"] {
-      width: 100%; padding: 14px 20px;
-      border: 1px solid var(--border); background: white;
-      font-family: 'Lato', sans-serif; font-size: 1rem;
-      color: var(--charcoal); text-align: center;
-      letter-spacing: 0.15em; outline: none;
-      transition: border-color 0.2s; margin-bottom: 12px;
+      width:100%; padding:14px 20px; border:1px solid var(--border); background:white;
+      font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--charcoal);
+      text-align:center; letter-spacing:0.15em; outline:none;
+      transition:border-color 0.2s; margin-bottom:14px;
     }
     input[type="password"]:focus { border-color: var(--sage); }
 
     button.enter-btn {
-      width: 100%; padding: 14px 20px;
-      background: var(--sage); color: white; border: none;
-      font-family: 'Lato', sans-serif; font-size: 0.75rem;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      cursor: pointer; transition: background 0.2s;
+      width:100%; padding:14px 20px; background:var(--sage); color:white; border:none;
+      font-family:'Cormorant Garamond',serif; font-size:0.78rem; letter-spacing:0.25em;
+      text-transform:uppercase; cursor:pointer; transition:background 0.2s;
     }
     button.enter-btn:hover { background: var(--sage-dark); }
 
-    .error {
-      margin-top: 12px; font-size: 0.8rem;
-      color: #b56060; display: none;
-    }
+    .error { margin-top:14px; font-size:0.78rem; letter-spacing:0.12em; color:#b56060; font-style:italic; display:none; }
 
-    /* POPUP OVERLAY */
+    /* POPUP */
     .popup-overlay {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,0.45); z-index:999;
+      align-items:center; justify-content:center; padding:20px;
     }
-    .popup-overlay.active { display: flex; }
+    .popup-overlay.active { display:flex; }
 
     .popup-box {
-      background: var(--cream);
-      max-width: 460px; width: 100%;
-      text-align: center;
-      padding: 48px 40px 40px;
-      position: relative;
+      background:var(--cream); max-width:460px; width:100%;
+      text-align:center; padding:48px 40px 40px;
       animation: popIn 0.3s ease;
     }
-
     @keyframes popIn {
-      from { opacity: 0; transform: scale(0.92) translateY(12px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+      from { opacity:0; transform:scale(0.92) translateY(12px); }
+      to   { opacity:1; transform:scale(1) translateY(0); }
     }
 
-    .popup-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
-
+    .popup-icon { font-size:2rem; margin-bottom:16px; display:block; }
     .popup-title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 2.2rem;
-      color: var(--charcoal);
-      line-height: 1.2;
-      margin-bottom: 8px;
+      font-family:'Great Vibes',cursive; font-size:2.4rem;
+      color:var(--charcoal); line-height:1.2; margin-bottom:8px;
     }
-
-    .popup-sub {
-      font-size: 0.88rem; color: #777;
-      margin-bottom: 30px; line-height: 1.6;
-    }
+    .popup-sub { font-size:0.95rem; font-style:italic; color:#777; margin-bottom:30px; line-height:1.6; }
 
     .popup-btn {
-      display: block; width: 100%;
-      padding: 13px 20px; margin-bottom: 10px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.75rem; letter-spacing: 0.18em;
-      text-transform: uppercase; cursor: pointer;
-      border: 1px solid var(--border);
-      background: white; color: var(--charcoal);
-      transition: all 0.2s;
+      display:block; width:100%; padding:13px 20px; margin-bottom:10px;
+      font-family:'Cormorant Garamond',serif; font-size:0.8rem;
+      letter-spacing:0.15em; text-transform:uppercase; cursor:pointer;
+      border:1px solid var(--border); background:white; color:var(--charcoal);
+      transition:all 0.2s;
     }
-    .popup-btn:hover { background: var(--cream); border-color: var(--sage); color: var(--sage-dark); }
-    .popup-btn.primary {
-      background: var(--sage); color: white; border-color: var(--sage);
-    }
-    .popup-btn.primary:hover { background: var(--sage-dark); }
+    .popup-btn:hover { border-color:var(--sage); color:var(--sage-dark); }
+    .popup-btn.primary { background:var(--sage); color:white; border-color:var(--sage); }
+    .popup-btn.primary:hover { background:var(--sage-dark); color:white; }
     .popup-btn.subtle {
-      font-size: 0.7rem; letter-spacing: 0.1em;
-      color: var(--warm-grey); border-color: transparent;
-      background: transparent; text-transform: none;
+      font-size:0.8rem; letter-spacing:0.03em; text-transform:none; font-style:italic;
+      color:var(--warm-grey); border-color:transparent; background:transparent;
     }
-    .popup-btn.subtle:hover { color: var(--sage-dark); background: transparent; }
+    .popup-btn.subtle:hover { color:var(--sage-dark); background:transparent; }
   </style>
 </head>
 <body>
@@ -188,17 +134,13 @@
       <span class="popup-icon">💍</span>
       <div class="popup-title">Have you RSVP'd yet?</div>
       <p class="popup-sub">We'd love to know if you can make it!</p>
-      <button class="popup-btn" onclick="goHome()">Yes!</button>
+      <button class="popup-btn" onclick="goHome()">Yes</button>
       <button class="popup-btn primary" onclick="window.location.href='rsvp.html'">No, bring me there now please!</button>
-      <button class="popup-btn subtle" onclick="goHome()">Maybe Later, I'm waiting to decide if I like you enough...</button>
+      <button class="popup-btn subtle" onclick="goHome()">Maybe later, I'm waiting to decide if I like you enough...</button>
     </div>
   </div>
 
   <script>
-    if (sessionStorage.getItem('weddingAuth') === 'true') {
-      window.location.href = 'home.html';
-    }
-
     function checkPassword() {
       const val = document.getElementById('pwd').value;
       if (val === 'dani69') {
@@ -210,10 +152,7 @@
         document.getElementById('pwd').focus();
       }
     }
-
-    function goHome() {
-      window.location.href = 'home.html';
-    }
+    function goHome() { window.location.href = 'home.html'; }
   </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RSVP — Danielle & Martin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --cream: #faf8f4;
@@ -17,88 +17,91 @@
       --error: #b56060;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { background:var(--cream); color:var(--charcoal); font-family:'Lato',sans-serif; font-weight:300; min-height:100vh; }
-
-    header { text-align:center; padding:32px 20px 0; background:var(--cream); }
-    .couple-script { font-family:'Pinyon Script',cursive; font-size:clamp(2.4rem,6vw,3.6rem); color:var(--charcoal); }
-
-    nav {
-      background:var(--cream); padding:14px 20px 12px;
-      text-align:center; border-bottom:1px solid var(--border);
+    body {
+      background:var(--cream); color:var(--charcoal);
+      font-family:'Cormorant Garamond',serif; font-weight:300; min-height:100vh;
     }
+
+    header { text-align:center; padding:36px 20px 0; background:var(--cream); }
+    .couple-script { font-family:'Great Vibes',cursive; font-size:clamp(2.2rem,5vw,3.2rem); color:var(--charcoal); }
+
+    nav { background:var(--cream); padding:16px 20px 14px; text-align:center; border-bottom:1px solid var(--border); }
     nav a {
-      font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
-      color:var(--charcoal); text-decoration:none;
-      padding-bottom:2px; border-bottom:1px solid transparent;
+      font-family:'Cormorant Garamond',serif; font-size:0.8rem;
+      letter-spacing:0.14em; text-transform:uppercase; color:var(--charcoal);
+      text-decoration:none; padding-bottom:2px; border-bottom:1px solid transparent;
       transition:color 0.2s, border-color 0.2s;
     }
     nav a:hover { color:var(--sage-dark); border-bottom-color:var(--sage); }
 
-    .section-banner { background:var(--sage); color:white; text-align:center; padding:22px 20px 16px; }
-    .banner-meta { font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; opacity:0.85; display:block; margin-bottom:5px; }
-    .banner-title { font-family:'Pinyon Script',cursive; font-size:clamp(2rem,4vw,2.8rem); color:white; display:block; line-height:1.1; }
+    .section-banner { background:var(--sage); color:white; text-align:center; padding:22px 20px 18px; position:relative; z-index:2; }
+    .banner-meta { font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase; opacity:0.85; display:block; margin-bottom:6px; }
+    .banner-title { font-family:'Great Vibes',cursive; font-size:clamp(2rem,4vw,2.8rem); color:white; display:block; line-height:1.1; }
 
-    /* WATERMARK */
-    .form-watermark-wrap { position:relative; }
-    .form-bg-watermark { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
-    .form-wrap { position:relative; z-index:1; max-width:580px; margin:0 auto; padding:52px 32px 64px; }
+    /* WATERMARK WRAPPER */
+    .wm-wrap { position:relative; overflow:hidden; }
+    .watermark {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      pointer-events:none; z-index:0;
+      width:min(560px,78vw); opacity:0.05;
+    }
+
+    .form-wrap { position:relative; z-index:2; max-width:580px; margin:0 auto; padding:56px 32px 64px; }
 
     .form-intro { text-align:center; margin-bottom:40px; }
-    .form-intro h2 { font-family:'Pinyon Script',cursive; font-size:2rem; color:var(--sage-dark); margin-bottom:10px; }
-    .form-intro p { font-size:0.92rem; color:#777; line-height:1.75; }
+    .form-intro h2 { font-family:'Great Vibes',cursive; font-size:2.2rem; color:var(--sage-dark); margin-bottom:10px; }
+    .form-intro p { font-size:0.98rem; color:#777; font-style:italic; line-height:1.7; }
 
-    .form-group { margin-bottom:26px; }
-    label { display:block; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:8px; }
+    .form-group { margin-bottom:28px; }
+    label { display:block; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:8px; }
     label .req { color:var(--error); margin-left:3px; }
-    label .opt { color:var(--warm-grey); font-size:0.62rem; letter-spacing:0; text-transform:none; }
+    label .opt { color:var(--warm-grey); font-style:italic; letter-spacing:0; text-transform:none; font-size:0.68rem; }
 
-    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
-      width:100%; padding:13px 16px;
-      border:1px solid var(--border); background:white;
-      font-family:'Lato',sans-serif; font-size:0.95rem;
-      color:var(--charcoal); outline:none;
-      transition:border-color 0.2s; -webkit-appearance:none;
+    input[type="text"], input[type="email"], input[type="tel"], textarea {
+      width:100%; padding:13px 16px; border:1px solid var(--border); background:white;
+      font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--charcoal);
+      outline:none; transition:border-color 0.2s; -webkit-appearance:none;
     }
-    input:focus, textarea:focus, select:focus { border-color:var(--sage); }
+    input:focus, textarea:focus { border-color:var(--sage); }
     input.err, textarea.err { border-color:var(--error); }
-    textarea { resize:vertical; min-height:90px; line-height:1.6; }
-    select { cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23888'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+    textarea { resize:vertical; min-height:95px; line-height:1.6; }
 
-    .err-msg { font-size:0.75rem; color:var(--error); margin-top:5px; display:none; }
+    .err-msg { font-size:0.78rem; color:var(--error); margin-top:5px; display:none; font-style:italic; }
 
     .form-rule { height:1px; background:var(--border); margin:32px 0; }
-
-    .form-section-label { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:20px; display:block; }
-
-    .fun-note { background:#eef4ec; border-left:3px solid var(--sage); padding:12px 16px; margin-bottom:26px; font-size:0.85rem; color:#555; line-height:1.6; }
+    .form-section-label { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:20px; display:block; }
+    .fun-note { background:#eef4ec; border-left:3px solid var(--sage); padding:12px 16px; margin-bottom:26px; font-size:0.92rem; font-style:italic; color:#555; line-height:1.6; }
 
     .submit-btn {
       width:100%; padding:16px 20px; background:var(--sage); color:white; border:none;
-      font-family:'Lato',sans-serif; font-size:0.75rem; letter-spacing:0.25em;
-      text-transform:uppercase; cursor:pointer; transition:background 0.2s; margin-top:6px;
+      font-family:'Cormorant Garamond',serif; font-size:0.82rem; letter-spacing:0.25em;
+      text-transform:uppercase; cursor:pointer; transition:background 0.2s; margin-top:8px;
     }
     .submit-btn:hover { background:var(--sage-dark); }
     .submit-btn:disabled { opacity:0.6; cursor:not-allowed; }
 
-    .back-link { display:block; text-align:center; margin-top:20px; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--warm-grey); text-decoration:none; transition:color 0.2s; }
+    .back-link { display:block; text-align:center; margin-top:22px; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--warm-grey); text-decoration:none; transition:color 0.2s; }
     .back-link:hover { color:var(--sage-dark); }
 
-    /* SUCCESS */
-    #success-message { display:none; text-align:center; padding:60px 32px; max-width:580px; margin:0 auto; }
+    #form-error { display:none; background:#fdf2f2; border:1px solid #e8c4c4; padding:12px 16px; margin-bottom:20px; font-size:0.9rem; font-style:italic; color:var(--error); text-align:center; }
+
+    #success-message { display:none; text-align:center; padding:60px 32px; max-width:580px; margin:0 auto; position:relative; z-index:2; }
     .success-icon { font-size:3rem; display:block; margin-bottom:20px; }
-    #success-message h2 { font-family:'Pinyon Script',cursive; font-size:2.8rem; color:var(--sage-dark); margin-bottom:16px; }
-    #success-message p { font-size:0.97rem; color:#666; line-height:1.8; margin-bottom:36px; }
-    #success-message a { display:inline-block; padding:14px 40px; background:var(--sage); color:white; text-decoration:none; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; transition:background 0.2s; }
+    #success-message h2 { font-family:'Great Vibes',cursive; font-size:2.8rem; color:var(--sage-dark); margin-bottom:16px; }
+    #success-message p { font-size:1.05rem; color:#666; font-style:italic; line-height:1.8; margin-bottom:36px; }
+    #success-message a {
+      display:inline-block; padding:14px 40px; background:var(--sage); color:white;
+      text-decoration:none; font-size:0.78rem; letter-spacing:0.22em;
+      text-transform:uppercase; transition:background 0.2s;
+    }
     #success-message a:hover { background:var(--sage-dark); }
 
-    /* ERROR BANNER */
-    #form-error { display:none; background:#fdf2f2; border:1px solid #e8c4c4; padding:12px 16px; margin-bottom:20px; font-size:0.85rem; color:var(--error); text-align:center; }
-
     footer { text-align:center; padding:36px 20px; border-top:1px solid var(--border); }
-    .footer-script { font-family:'Pinyon Script',cursive; font-size:1.8rem; color:var(--sage-dark); }
-    footer p { margin-top:8px; font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--warm-grey); }
+    .footer-script { font-family:'Great Vibes',cursive; font-size:1.6rem; color:var(--sage-dark); }
+    footer p { margin-top:8px; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--warm-grey); }
 
-    @media (max-width:500px) { .form-wrap { padding:36px 18px 52px; } }
+    @media (max-width:500px) { .form-wrap { padding:40px 20px 52px; } }
   </style>
 </head>
 <body>
@@ -106,116 +109,154 @@
 <header>
   <div class="couple-script">Danielle &amp; Martin</div>
 </header>
-<nav>
-  <a href="home.html">&larr; Back to Home</a>
-</nav>
+<nav><a href="home.html">&larr; Back to Home</a></nav>
 
 <div class="section-banner">
   <span class="banner-meta">11 June 2027 &nbsp;·&nbsp; Gloster House &nbsp;·&nbsp; Black Tie</span>
   <span class="banner-title">RSVP</span>
 </div>
 
-<!-- FORM WITH WATERMARK -->
-<div class="form-watermark-wrap">
+<div class="wm-wrap">
 
-  <!-- Flowers watermark -->
-  <div class="form-bg-watermark" aria-hidden="true">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="pat-rsvp" width="130" height="130" patternUnits="userSpaceOnUse">
-          <g transform="translate(65,65)">
-            <g opacity="0.08" fill="#7d9b76">
-              <ellipse rx="7" ry="22" cy="-18"/>
-              <ellipse rx="7" ry="22" cy="-18" transform="rotate(72)"/>
-              <ellipse rx="7" ry="22" cy="-18" transform="rotate(144)"/>
-              <ellipse rx="7" ry="22" cy="-18" transform="rotate(216)"/>
-              <ellipse rx="7" ry="22" cy="-18" transform="rotate(288)"/>
-              <circle r="10" fill="#a8c4a2" opacity="0.55"/>
-            </g>
-            <line x1="-6" y1="10" x2="-20" y2="26" stroke="#7d9b76" stroke-width="1.5" opacity="0.06"/>
-            <line x1="6" y1="10" x2="20" y2="26" stroke="#7d9b76" stroke-width="1.5" opacity="0.06"/>
-          </g>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#pat-rsvp)"/>
-    </svg>
-  </div>
+  <!-- Bouquet watermark -->
+  <svg class="watermark" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#5a7a54" stroke-width="2.5" fill="none" stroke-linecap="round">
+      <path d="M200 250 L200 380"/>
+      <path d="M200 260 C170 290 155 330 158 375"/>
+      <path d="M200 260 C230 290 245 330 242 375"/>
+      <path d="M200 265 C182 300 176 340 180 378"/>
+      <path d="M200 265 C218 300 224 340 220 378"/>
+    </g>
+    <g fill="#5a7a54">
+      <ellipse cx="152" cy="292" rx="20" ry="9" transform="rotate(-32 152 292)"/>
+      <ellipse cx="248" cy="292" rx="20" ry="9" transform="rotate(32 248 292)"/>
+      <ellipse cx="163" cy="333" rx="17" ry="8" transform="rotate(-26 163 333)"/>
+      <ellipse cx="237" cy="333" rx="17" ry="8" transform="rotate(26 237 333)"/>
+    </g>
+    <g fill="#5a7a54">
+      <g transform="translate(200,120)">
+        <ellipse rx="15" ry="42" cy="-30"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(60)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(120)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(180)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(240)"/>
+        <ellipse rx="15" ry="42" cy="-30" transform="rotate(300)"/>
+        <circle r="18" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(118,168) scale(0.8)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(282,168) scale(0.8)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(150,232) scale(0.62)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+      <g transform="translate(250,232) scale(0.62)">
+        <ellipse rx="14" ry="38" cy="-28"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(72)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(144)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(216)"/>
+        <ellipse rx="14" ry="38" cy="-28" transform="rotate(288)"/>
+        <circle r="16" fill="#7d9b76"/>
+      </g>
+    </g>
+    <g fill="#7d9b76" opacity="0.8">
+      <ellipse cx="92" cy="238" rx="34" ry="13" transform="rotate(-40 92 238)"/>
+      <ellipse cx="308" cy="238" rx="34" ry="13" transform="rotate(40 308 238)"/>
+      <ellipse cx="200" cy="46" rx="13" ry="30"/>
+    </g>
+    <g stroke="#5a7a54" stroke-width="6" fill="none" stroke-linecap="round">
+      <path d="M168 288 Q200 302 232 288"/>
+      <path d="M200 296 Q176 320 166 344"/>
+      <path d="M200 296 Q224 320 234 344"/>
+    </g>
+  </svg>
 
-  <!-- FORM -->
   <div id="form-container" class="form-wrap">
     <div class="form-intro">
       <h2>Kindly Reply</h2>
       <p>Fields marked <span style="color:var(--error)">*</span> are required.</p>
     </div>
 
-    <div id="form-error">Something went wrong — please try again or email us directly.</div>
+    <div id="form-error">Something went wrong — please try again.</div>
 
-    <!-- GUEST NAMES -->
     <span class="form-section-label">Your Details</span>
 
     <div class="form-group">
       <label for="name1">Guest 1 <span class="req">*</span></label>
-      <input type="text" id="name1" name="Guest 1" placeholder="Full name"/>
+      <input type="text" id="name1" placeholder="Full name"/>
       <p class="err-msg" id="name1-err">Please enter your name.</p>
     </div>
 
     <div class="form-group">
       <label for="name2">Guest 2 <span class="opt">(if applicable)</span></label>
-      <input type="text" id="name2" name="Guest 2" placeholder="Full name"/>
+      <input type="text" id="name2" placeholder="Full name"/>
     </div>
 
     <div class="form-rule"></div>
 
     <div class="form-group">
       <label for="email">Email Address <span class="req">*</span></label>
-      <input type="email" id="email" name="Email" placeholder="your@email.com"/>
+      <input type="email" id="email" placeholder="your@email.com"/>
       <p class="err-msg" id="email-err">Please enter a valid email address.</p>
     </div>
 
     <div class="form-group">
       <label for="phone">Phone Number <span class="req">*</span></label>
-      <input type="tel" id="phone" name="Phone" placeholder="+353 87 000 0000"/>
+      <input type="tel" id="phone" placeholder="+353 87 000 0000"/>
       <p class="err-msg" id="phone-err">Please enter your phone number.</p>
     </div>
 
     <div class="form-rule"></div>
 
-    <!-- DIETARY -->
     <div class="form-group">
       <label for="dietaries">Dietary Requirements / Allergies <span class="opt">(optional)</span></label>
-      <textarea id="dietaries" name="Dietary Requirements" placeholder="Please list any dietary requirements or allergies for you or your guest. Leave blank if none."></textarea>
+      <textarea id="dietaries" placeholder="Please list any dietary requirements or allergies for you or your guest. Leave blank if none."></textarea>
     </div>
 
     <div class="form-rule"></div>
 
-    <!-- FUN QUESTIONS -->
     <span class="form-section-label">The Important Stuff</span>
     <div class="fun-note">Now for the questions that really matter...</div>
 
     <div class="form-group">
       <label for="shot">Shot of Choice <span class="opt">(optional)</span></label>
-      <input type="text" id="shot" name="Shot of Choice" placeholder="e.g. Tequila, Jameson, Sambuca, All of the above..."/>
+      <input type="text" id="shot" placeholder="Tequila, Jameson, Sambuca, all of the above..."/>
     </div>
 
     <div class="form-group">
       <label for="banger">Dance Floor Banger Request <span class="opt">(optional)</span></label>
-      <input type="text" id="banger" name="Dance Floor Banger" placeholder="What song will get you on the floor?"/>
+      <input type="text" id="banger" placeholder="What song will get you on the floor?"/>
     </div>
 
     <button class="submit-btn" id="submit-btn" onclick="submitRSVP()">Send RSVP</button>
     <a href="home.html" class="back-link">&larr; Back to Home</a>
-
   </div>
 
-  <!-- SUCCESS -->
   <div id="success-message">
     <span class="success-icon">💚</span>
     <h2>Thank You!</h2>
-    <p>We've received your RSVP and we're so excited you're joining us.<br/>See you on 11 June 2027!</p>
+    <p>We've received your RSVP.<br/>See you on 11 June 2027!</p>
     <a href="home.html">Back to Home</a>
   </div>
 
-</div><!-- end form-watermark-wrap -->
+</div>
 
 <footer>
   <div class="footer-script">Danielle &amp; Martin</div>
@@ -225,45 +266,35 @@
 <script>
   /*
   ─────────────────────────────────────────────────────────────
-  FORMSPREE SETUP (to receive RSVPs by email + CSV download):
+  TO COLLECT RSVPs (and export to Excel):
   1. Go to https://formspree.io and create a free account
   2. Click "New Form", name it "Wedding RSVP"
   3. Copy your form ID (looks like: xabcdefg)
-  4. Replace YOUR_FORM_ID below with your actual ID
-  5. From your Formspree dashboard you can download all
-     submissions as CSV to open in Excel at any time
+  4. Replace YOUR_FORM_ID below with that ID
+  5. From the Formspree dashboard you can email-notify on each
+     submission and download all responses as CSV for Excel
   ─────────────────────────────────────────────────────────────
   */
   const FORMSPREE_ID = 'YOUR_FORM_ID';
 
   function validate() {
     let ok = true;
-
-    const name1 = document.getElementById('name1');
-    const name1Err = document.getElementById('name1-err');
-    if (!name1.value.trim()) {
-      name1.classList.add('err'); name1Err.style.display='block'; ok=false;
-    } else { name1.classList.remove('err'); name1Err.style.display='none'; }
-
-    const email = document.getElementById('email');
-    const emailErr = document.getElementById('email-err');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-      email.classList.add('err'); emailErr.style.display='block'; ok=false;
-    } else { email.classList.remove('err'); emailErr.style.display='none'; }
-
-    const phone = document.getElementById('phone');
-    const phoneErr = document.getElementById('phone-err');
-    if (!phone.value.trim()) {
-      phone.classList.add('err'); phoneErr.style.display='block'; ok=false;
-    } else { phone.classList.remove('err'); phoneErr.style.display='none'; }
-
+    const check = (id, test) => {
+      const el = document.getElementById(id);
+      const msg = document.getElementById(id + '-err');
+      if (!test(el.value.trim())) { el.classList.add('err'); msg.style.display='block'; ok=false; }
+      else { el.classList.remove('err'); msg.style.display='none'; }
+    };
+    check('name1', v => v.length > 0);
+    check('email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+    check('phone', v => v.length > 0);
     return ok;
   }
 
   function showSuccess() {
     document.getElementById('form-container').style.display='none';
     document.getElementById('success-message').style.display='block';
-    window.scrollTo({ top: 0, behavior:'smooth' });
+    window.scrollTo({ top:0, behavior:'smooth' });
   }
 
   async function submitRSVP() {
@@ -281,26 +312,22 @@
       'Phone':                document.getElementById('phone').value.trim(),
       'Dietary Requirements': document.getElementById('dietaries').value.trim(),
       'Shot of Choice':       document.getElementById('shot').value.trim(),
-      'Dance Floor Banger':   document.getElementById('banger').value.trim(),
+      'Dance Floor Banger':   document.getElementById('banger').value.trim()
     };
 
-    // If Formspree not yet configured, just show success (test mode)
-    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
-      setTimeout(showSuccess, 600);
+    if (FORMSPREE_ID === 'YOUR_FORM_ID') {   // test mode until configured
+      setTimeout(showSuccess, 500);
       return;
     }
 
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
         method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        headers: { 'Accept':'application/json', 'Content-Type':'application/json' },
         body: JSON.stringify(data)
       });
-      if (res.ok) {
-        showSuccess();
-      } else {
-        throw new Error('Server error');
-      }
+      if (!res.ok) throw new Error();
+      showSuccess();
     } catch(e) {
       btn.disabled = false;
       btn.textContent = 'Send RSVP';
