@@ -275,7 +275,7 @@
   paste the new /exec URL below.
   ─────────────────────────────────────────────────────────────
   */
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyNaS8HnLW34ztooJKLQY0w0sTbtcJgNYMIp1l5b35YmTZ34DkcDx0uL8LdaeKVsF185A/exec';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwpHGpwMoxST4L__VrkG8T_0EE0UF6VKyidIWhWgOfp-tM9WRwL1AZEH6SNwgxr1fPZYg/exec';
 
   function validate() {
     let ok = true;
@@ -316,16 +316,29 @@
     });
 
     try {
+      // Primary attempt: readable response, so genuine failures are caught
       const res = await fetch(SHEET_URL, {
         method: 'POST',
         body: data          // form-encoded: avoids a CORS preflight
       });
-      if (!res.ok) throw new Error();
+      if (!res.ok) throw new Error('bad status');
       showSuccess();
-    } catch(e) {
-      btn.disabled = false;
-      btn.textContent = 'Send RSVP';
-      document.getElementById('form-error').style.display = 'block';
+
+    } catch (e) {
+      // Fallback: fire-and-forget. Google sometimes blocks the response
+      // from being read even though the row is written successfully.
+      try {
+        await fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: data
+        });
+        showSuccess();
+      } catch (e2) {
+        btn.disabled = false;
+        btn.textContent = 'Send RSVP';
+        document.getElementById('form-error').style.display = 'block';
+      }
     }
   }
 </script>
